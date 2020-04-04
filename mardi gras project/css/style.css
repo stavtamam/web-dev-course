@@ -1,0 +1,266 @@
+@import url("https://fonts.googleapis.com/css?family=Pattaya|Roboto+Slab:300&display=swap");
+body {
+  background-image: url("images/mardigras.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+body .container {
+  width: 80%;
+  height: 100%;
+  background-color: rgba(245, 245, 245, 0.76);
+}
+
+.sidenav {
+  width: 11%;
+  position: fixed;
+  z-index: 1;
+  bottom: 10px;
+  left: 10px;
+  overflow-x: hidden;
+  padding: 8px 0;
+  display: block;
+}
+
+.frame {
+  width: 100%;
+  height: 440px;
+  float: left;
+  position: -webkit-sticky;
+  position: sticky;
+}
+
+h1,
+h2 {
+  font-family: "Pattaya";
+  text-align: center;
+  color: #9453A6;
+  font-size: 3em;
+}
+
+.home {
+  text-align: center;
+  background-color: #9453A6;
+  color: white;
+  border: 2px solid #9453A6;
+  margin: 2px;
+  font-family: "Pattaya";
+  font-size: 1.5em;
+}
+
+.home:hover {
+  background-color: #764284;
+  -webkit-box-shadow: 2px 2px 2px #9453A6;
+          box-shadow: 2px 2px 2px #9453A6;
+}
+
+.about {
+  text-align: center;
+  background-color: #8CBF3F;
+  color: white;
+  border: 2px solid #8CBF3F;
+  margin: 2px;
+  font-family: "Pattaya";
+  font-size: 1.5em;
+}
+
+.about:hover {
+  background-color: #7eac39;
+  -webkit-box-shadow: 2px 2px 2px #8CBF3F;
+          box-shadow: 2px 2px 2px #8CBF3F;
+}
+
+.media {
+  text-align: center;
+  background-color: #F2CC0F;
+  color: white;
+  border: 2px solid #F2CC0F;
+  margin: 2px;
+  font-family: "Pattaya";
+  font-size: 1.5em;
+  display: inline;
+}
+
+.media:hover {
+  background-color: #dcb90c;
+  -webkit-box-shadow: 2px 2px 2px #F2CC0F;
+          box-shadow: 2px 2px 2px #F2CC0F;
+}
+
+.faq {
+  text-align: center;
+  background-color: #F2F2F2;
+  color: white;
+  border: 2px solid #F2F2F2;
+  margin: 2px;
+  font-family: "Pattaya";
+  font-size: 1.5em;
+  color: black;
+}
+
+.faq:hover {
+  background-color: #e5e5e5;
+  -webkit-box-shadow: 2px 2px 2px #F2F2F2;
+          box-shadow: 2px 2px 2px #F2F2F2;
+  color: gray;
+}
+
+.contact {
+  text-align: center;
+  background-color: #0D0D0D;
+  color: white;
+  border: 2px solid #0D0D0D;
+  margin: 2px;
+  font-family: "Pattaya";
+  font-size: 1.5em;
+}
+
+.contact:hover {
+  background-color: black;
+  -webkit-box-shadow: 2px 2px 2px #0D0D0D;
+          box-shadow: 2px 2px 2px #0D0D0D;
+  color: gray;
+}
+
+.imgim {
+  height: 80vh;
+}
+
+@media (max-width: 991px) {
+  .imgim {
+    height: auto;
+  }
+  .spons {
+    width: 30%;
+    height: auto;
+  }
+  .faqimg {
+    width: 30%;
+    height: auto;
+  }
+  .tikun {
+    width: 100%;
+    height: 100%;
+  }
+  .imgims {
+    width: 100%;
+    height: 100%;
+  }
+  .logo {
+    display: none;
+  }
+  .sidenav {
+    display: none;
+  }
+}
+
+.copy {
+  text-align: center;
+}
+
+.sponsers {
+  text-align: center;
+}
+
+.spons {
+  width: 170px;
+  height: 150px;
+  padding: 5px;
+  border-radius: 30%;
+  border: 3px outset #F2CC0F;
+}
+
+p {
+  font-family: "Roboto Slab";
+  text-align: center;
+  font-size: 1em;
+}
+
+.w-50 .mayor {
+  width: 35%;
+  height: 30vh;
+}
+
+.w-50 .info {
+  text-align: left;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.w-50 h3 {
+  font-size: 1.5em;
+  font-family: "Pattaya";
+  color: #9453A6;
+}
+
+.grouped_elements {
+  width: 30%;
+  height: auto;
+}
+
+.qaa {
+  border-radius: 10px;
+  text-align: center;
+  font-family: "Pattaya";
+  color: black;
+}
+
+.qaa:hover {
+  cursor: pointer;
+}
+
+.ho {
+  background-color: #9453A6;
+  border-radius: 10px;
+  border: 1px solid #fae5c9;
+}
+
+.ab {
+  background-color: #8CBF3F;
+  border-radius: 10px;
+  border: 1px solid #fae5c9;
+}
+
+.me {
+  background-color: #F2CC0F;
+  border-radius: 10px;
+  border: 1px solid #fae5c9;
+}
+
+.fa {
+  background-color: #F2F2F2;
+  border-radius: 10px;
+  border: 1px solid #fae5c9;
+}
+
+.co {
+  background-color: #0D0D0D;
+  border-radius: 10px;
+  border: 1px solid #fae5c9;
+  color: antiquewhite;
+}
+
+.faqimg {
+  height: 80vh;
+  width: 100%;
+}
+
+.imgims {
+  width: 218px;
+  height: 220px;
+  padding: 1px;
+  border: 2px dotted #F2CC0F;
+  border-radius: 5%;
+}
+
+.tikun {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+}
+/*# sourceMappingURL=style.css.map */

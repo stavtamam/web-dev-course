@@ -1,0 +1,262 @@
+@mixin btns($color) {
+    text-align: center;
+    background-color: $color;
+    color: white;
+    border: 2px solid $color;
+    margin: 2px;
+    font-family: $hfont;
+    font-size: 1.5em;
+}
+
+body {
+    background-image: url('images/mardigras.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+
+    .container {
+        width: 80%;
+        height: 100%;
+        background-color: hsla(0, 0%, 96%, 0.76);
+    }
+}
+
+.sidenav {
+    width: 11%;
+    position: fixed;
+    z-index: 1;
+    bottom: 10px;
+    left: 10px;
+    overflow-x: hidden;
+    padding: 8px 0;
+    display: block;
+}
+
+.frame {
+    width: 100%;
+    height: 440px;
+    float: left;
+    position: sticky;
+}
+
+// .sidenav2 {
+//     width: 11%;
+//     position: fixed;
+//     z-index: 2;
+//     top: 20px;
+//     right: 10px;
+//     background: #eee;
+//     overflow-x: hidden;
+//     padding: 8px 0;
+// }
+
+h1,
+h2 {
+    font-family: $hfont;
+    text-align: center;
+    color: $homecolor;
+    font-size: $hsize;
+}
+
+.home {
+    @include btns($homecolor);
+
+    &:hover {
+        background-color: darken($homecolor, 10%);
+        box-shadow: 2px 2px 2px ($homecolor);
+
+    }
+}
+
+.about {
+    @include btns($aboutcolor);
+
+    &:hover {
+        background-color: darken($aboutcolor, 5%);
+        box-shadow: 2px 2px 2px ($aboutcolor);
+
+    }
+}
+
+.media {
+    @include btns($mediacolor);
+    display: inline;
+
+    &:hover {
+        background-color: darken($mediacolor, 5%);
+        box-shadow: 2px 2px 2px ($mediacolor);
+
+    }
+}
+
+.faq {
+    @include btns($FAQcolor);
+    color: black;
+
+    &:hover {
+        background-color: darken($FAQcolor, 5%);
+        box-shadow: 2px 2px 2px ($FAQcolor);
+        color: gray;
+
+    }
+}
+
+.contact {
+    @include btns($contactcolor);
+
+    &:hover {
+        background-color: darken($contactcolor, 5%);
+        box-shadow: 2px 2px 2px ($contactcolor);
+        color: gray;
+
+    }
+}
+
+.imgim {
+    height: 80vh;
+}
+
+@media (max-width: 991px) {
+    .imgim {
+        height: auto;
+    }
+
+    .spons {
+        width: 30%;
+        height: auto;
+    }
+
+    .faqimg {
+        width: 30%;
+        height: auto;
+    }
+
+    .tikun {
+        width: 100%;
+        height: 100%;
+    }
+
+    .imgims {
+        width: 100%;
+        height: 100%;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .sidenav {
+        display: none;
+    }
+}
+
+.copy {
+    text-align: center;
+}
+
+.sponsers {
+    text-align: center;
+}
+
+.spons {
+    width: 170px;
+    height: 150px;
+    padding: 5px;
+    border-radius: 30%;
+    border: 3px outset $mediacolor;
+}
+
+p {
+    font-family: $tfont;
+    text-align: center;
+    font-size: $tsize;
+}
+
+.w-50 {
+    .mayor {
+        width: 35%;
+        height: 30vh;
+    }
+
+    .info {
+        text-align: left;
+        box-sizing: border-box;
+    }
+
+    h3 {
+        font-size: 1.5em;
+        font-family: $hfont;
+        color: $homecolor;
+    }
+}
+
+.grouped_elements {
+    width: 30%;
+    height: auto;
+}
+
+.qaa {
+
+    border-radius: 10px;
+    text-align: center;
+    font-family: $hfont;
+    color: black;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.ho {
+    background-color: $homecolor;
+    border-radius: 10px;
+    border: 1px solid rgb(250, 229, 201);
+}
+
+.ab {
+    background-color: $aboutcolor;
+    border-radius: 10px;
+    border: 1px solid rgb(250, 229, 201);
+}
+
+.me {
+    background-color: $mediacolor;
+    border-radius: 10px;
+    border: 1px solid rgb(250, 229, 201);
+}
+
+.fa {
+    background-color: $FAQcolor;
+    border-radius: 10px;
+    border: 1px solid rgb(250, 229, 201);
+}
+
+.co {
+    background-color: $contactcolor;
+    border-radius: 10px;
+    border: 1px solid rgb(250, 229, 201);
+    color: antiquewhite;
+}
+
+.faqimg {
+    height: 80vh;
+    width: 100%;
+}
+
+.imgims {
+    width: 218px;
+    height: 220px;
+    padding: 1px;
+    border: 2px dotted $mediacolor;
+    border-radius: 5%;
+}
+
+.tikun {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+}
