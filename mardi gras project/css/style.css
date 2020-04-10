@@ -11,6 +11,26 @@ body .container {
   background-color: rgba(245, 245, 245, 0.76);
 }
 
+.form1 {
+  background-image: url("images/last2.png");
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
+  z-index: -1;
+  width: 70%;
+  height: auto;
+  margin: 0 auto;
+  background-color: rgba(245, 245, 245, 0.849);
+  border-radius: 1.5em;
+}
+
+footer {
+  width: 100%;
+  margin: 0 auto;
+  background-color: rgba(245, 245, 245, 0.849);
+  border-radius: 1.5em;
+}
+
 .sidenav {
   width: 11%;
   position: fixed;
@@ -124,6 +144,7 @@ h2 {
 
 .imgim {
   height: 80vh;
+  border-radius: 1.5em;
 }
 
 @media (max-width: 993px) {
@@ -131,10 +152,6 @@ h2 {
     height: auto;
   }
   .spons {
-    width: 30%;
-    height: auto;
-  }
-  .faqimg {
     width: 30%;
     height: auto;
   }
@@ -172,29 +189,212 @@ p {
   font-size: 1em;
 }
 
-.w-50 {
+.idm {
   margin: 0 auto;
   border: 2px dotted #9453A6;
-  height: auto;
+  width: 50%;
+  height: 100%;
   padding: 0.5%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 1.5em;
 }
 
 .mayor {
+  width: 100%;
   border: none;
-  margin-top: 3%;
+  height: auto;
+  margin-top: 0;
   margin-bottom: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 1.5em;
 }
 
 .info {
-  text-align: left;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  font-family: "Roboto Slab";
 }
 
 h3 {
+  text-align: center;
   font-size: 1.5em;
   font-family: "Pattaya";
   color: #9453A6;
+}
+
+form {
+  padding: 1%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+  -ms-grid-rows: (1fr)[9];
+      grid-template-rows: repeat(9, 1fr);
+  grid-gap: 0.5%;
+}
+
+form .name2 {
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2/3;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1/2;
+}
+
+form .name {
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 1;
+  grid-row: 3/4;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1/2;
+}
+
+form .feed1 {
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2/3;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1/2;
+  margin-top: 15%;
+  text-align: center;
+  font-family: "Roboto Slab";
+}
+
+form .lname {
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 1;
+  grid-row: 3/4;
+  -ms-grid-column: 4;
+  -ms-grid-column-span: 1;
+  grid-column: 4/5;
+}
+
+form .laname {
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2/3;
+  -ms-grid-column: 4;
+  -ms-grid-column-span: 1;
+  grid-column: 4/5;
+}
+
+form .feed2 {
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2/3;
+  -ms-grid-column: 4;
+  -ms-grid-column-span: 1;
+  grid-column: 4/5;
+  margin-top: 15%;
+  text-align: center;
+  font-family: "Roboto Slab";
+}
+
+form .lemail {
+  -ms-grid-row: 4;
+  -ms-grid-row-span: 1;
+  grid-row: 4/5;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1/2;
+}
+
+form .email {
+  -ms-grid-row: 5;
+  -ms-grid-row-span: 1;
+  grid-row: 5/6;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1/2;
+}
+
+form .feed3 {
+  -ms-grid-row: 4;
+  -ms-grid-row-span: 1;
+  grid-row: 4/5;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1/2;
+  margin-top: 15%;
+  text-align: center;
+  font-family: "Roboto Slab";
+}
+
+form .message {
+  -ms-grid-row: 4;
+  -ms-grid-row-span: 1;
+  grid-row: 4/5;
+  -ms-grid-column: 4;
+  -ms-grid-column-span: 1;
+  grid-column: 4/5;
+}
+
+form textarea {
+  -ms-grid-row: 5;
+  -ms-grid-row-span: 3;
+  grid-row: 5/8;
+  -ms-grid-column: 4;
+  -ms-grid-column-span: 1;
+  grid-column: 4/5;
+}
+
+form .feed4 {
+  -ms-grid-row: 4;
+  -ms-grid-row-span: 1;
+  grid-row: 4/5;
+  -ms-grid-column: 4;
+  -ms-grid-column-span: 1;
+  grid-column: 4/5;
+  margin-top: 15%;
+  text-align: center;
+  font-family: "Roboto Slab";
+}
+
+form .submit {
+  -ms-grid-row: 9;
+  -ms-grid-row-span: 1;
+  grid-row: 9/10;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1/2;
+  background-color: #F2CC0F;
+  color: white;
+  font-family: "Pattaya";
+  font-size: 2em;
+  border-radius: 1.5em;
+}
+
+form .reset {
+  -ms-grid-row: 9;
+  -ms-grid-row-span: 1;
+  grid-row: 9/10;
+  -ms-grid-column: 4;
+  -ms-grid-column-span: 1;
+  grid-column: 4/5;
+  background-color: #8CBF3F;
+  color: white;
+  font-family: "Pattaya";
+  font-size: 2em;
+}
+
+label {
+  text-align: center;
+  font-size: 1.5em;
+  font-family: "Pattaya";
+  color: #9453A6;
+}
+
+textarea,
+input {
+  font-family: "Roboto Slab";
+  text-align: center;
+  font-size: 1em;
+  border-radius: 0.8em;
 }
 
 .grouped_elements {
@@ -244,9 +444,10 @@ h3 {
   color: antiquewhite;
 }
 
-.faqimg {
-  height: 80vh;
-  width: 100%;
+.ing2 {
+  padding: 0.5em;
+  border-radius: 1.5em;
+  background-color: rgba(245, 245, 245, 0.849);
 }
 
 .imgims {
@@ -256,10 +457,6 @@ h3 {
   border-radius: 5%;
   padding-left: 0;
   padding-right: 0;
-}
-
-.tikun {
-  border: 2px solid black;
 }
 
 .logo {
