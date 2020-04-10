@@ -20,6 +20,26 @@ body {
     }
 }
 
+.form1 {
+    background-image: url('images/last2.png');
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    z-index: -1;
+    width: 70%;
+    height: auto;
+    margin: 0 auto;
+    background-color: hsla(0, 0%, 96%, 0.849);
+    border-radius: 1.5em;
+}
+
+footer {
+    width: 100%;
+    margin: 0 auto;
+    background-color: hsla(0, 0%, 96%, 0.849);
+    border-radius: 1.5em;
+}
+
 .sidenav {
     width: 11%;
     position: fixed;
@@ -37,17 +57,6 @@ body {
     float: left;
     position: sticky;
 }
-
-// .sidenav2 {
-//     width: 11%;
-//     position: fixed;
-//     z-index: 2;
-//     top: 20px;
-//     right: 10px;
-//     background: #eee;
-//     overflow-x: hidden;
-//     padding: 8px 0;
-// }
 
 h1,
 h2 {
@@ -113,6 +122,7 @@ h2 {
 
 .imgim {
     height: 80vh;
+    border-radius: 1.5em;
 }
 
 @media (max-width: 993px) {
@@ -121,11 +131,6 @@ h2 {
     }
 
     .spons {
-        width: 30%;
-        height: auto;
-    }
-
-    .faqimg {
         width: 30%;
         height: auto;
     }
@@ -142,6 +147,7 @@ h2 {
     .sidenav {
         display: none;
     }
+
 }
 
 .copy {
@@ -166,28 +172,153 @@ p {
     font-size: $tsize;
 }
 
-.w-50 {
+.idm {
     margin: 0 auto;
     border: 2px dotted $homecolor;
-    height: auto;
+    width: 50%;
+    height: 100%;
     padding: 0.5%;
+    box-sizing: border-box;
+    border-radius: 1.5em;
+
+
 }
 
 .mayor {
+    width: 100%;
     border: none;
-    margin-top: 3%;
+    height: auto;
+    margin-top: 0;
     margin-bottom: 0;
+    box-sizing: border-box;
+    border-radius: 1.5em;
 }
 
+
 .info {
-    text-align: left;
     box-sizing: border-box;
+    font-family: $tfont;
 }
 
 h3 {
+    text-align: center;
     font-size: 1.5em;
     font-family: $hfont;
     color: $homecolor;
+}
+
+form {
+    padding: 1%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    grid-gap: 0.5%;
+
+    .name2 {
+        grid-row: 2/3;
+        grid-column: 1/2;
+    }
+
+    .name {
+        grid-row: 3/4;
+        grid-column: 1/2;
+    }
+
+    .feed1 {
+        grid-row: 2/3;
+        grid-column: 1/2;
+        margin-top: 15%;
+        text-align: center;
+        font-family: $tfont;
+    }
+
+    .lname {
+        grid-row: 3/4;
+        grid-column: 4/5;
+    }
+
+    .laname {
+        grid-row: 2/3;
+        grid-column: 4/5;
+    }
+
+    .feed2 {
+        grid-row: 2/3;
+        grid-column: 4/5;
+        margin-top: 15%;
+        text-align: center;
+        font-family: $tfont;
+    }
+
+    .lemail {
+        grid-row: 4/5;
+        grid-column: 1/2;
+    }
+
+    .email {
+        grid-row: 5/6;
+        grid-column: 1/2;
+    }
+
+    .feed3 {
+        grid-row: 4/5;
+        grid-column: 1/2;
+        margin-top: 15%;
+        text-align: center;
+        font-family: $tfont;
+    }
+
+    .message {
+        grid-row: 4/5;
+        grid-column: 4/5;
+    }
+
+    textarea {
+        grid-row: 5/8;
+        grid-column: 4/5;
+    }
+
+    .feed4 {
+        grid-row: 4/5;
+        grid-column: 4/5;
+        margin-top: 15%;
+        text-align: center;
+        font-family: $tfont;
+    }
+
+    .submit {
+        grid-row: 9/10;
+        grid-column: 1/2;
+        background-color: $mediacolor;
+        color: white;
+        font-family: $hfont;
+        font-size: 2em;
+        border-radius: 1.5em;
+    }
+
+    .reset {
+        grid-row: 9/10;
+        grid-column: 4/5;
+        background-color: $aboutcolor;
+        color: white;
+        font-family: $hfont;
+        font-size: 2em;
+    }
+}
+
+label {
+    text-align: center;
+    font-size: 1.5em;
+    font-family: $hfont;
+    color: $homecolor;
+}
+
+textarea,
+input {
+    font-family: $tfont;
+    text-align: center;
+    font-size: $tsize;
+    border-radius: 0.8em;
 }
 
 .grouped_elements {
@@ -238,9 +369,11 @@ h3 {
     color: antiquewhite;
 }
 
-.faqimg {
-    height: 80vh;
-    width: 100%;
+.ing2 {
+    padding: 0.5em;
+    border-radius: 1.5em;
+    background-color: hsla(0, 0%, 96%, 0.849);
+    ;
 }
 
 .imgims {
@@ -250,11 +383,6 @@ h3 {
     border-radius: 5%;
     padding-left: 0;
     padding-right: 0;
-}
-
-.tikun {
-    border: 2px solid black;
-
 }
 
 .logo {

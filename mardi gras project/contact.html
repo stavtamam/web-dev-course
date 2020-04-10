@@ -2,6 +2,10 @@
 <html lang="en">
 
 <head>
+    <link rel="apple-touch-icon" sizes="180x180" href="css/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="css/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="css/images/favicon-16x16.png">
+    <link rel="manifest" href="css/images/site.webmanifest">
     <title>Mardi Gras 2020</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -38,14 +42,33 @@
                     Us</button>
             </div>
         </nav> <br>
-        <h1>Contact us</h1>
-        <label for="name" class="">Name:</label><br>
-        <input type="text"><br>
-        <label for="lname">Last Name:</label><br>
-        <input type="text"><br>
-        <label for="email">Email:</label><br>
-        <input type="email">
-
+        <div class="form1">
+            <h1>Contact Us</h1>
+            <form action="" class="needs-validation" novalidate>
+                <label for="validationCustom01" class="name2">Name:</label>
+                <input type="text" class="name form-control" id="validationCustom01" required>
+                <div class="invalid-feedback feed1">
+                    what is your name?
+                </div>
+                <label for="validationCustom02" class="laname">Last Name:</label>
+                <input type="text" class="lname form-control" id="validationCustom02" required>
+                <div class="invalid-feedback feed2">
+                    what is your last name?
+                </div>
+                <label for="validationCustom03" class="lemail">Email:</label>
+                <input type="email" class="email form-control" id="validationCustom03" required>
+                <div class="invalid-feedback feed3">
+                    Please provide a valid email
+                </div>
+                <label for="validationCustom04" class="message">Message:</label>
+                <textarea name="" rows="5" id="validationCustom04" class="form-control" required></textarea>
+                <div class="invalid-feedback feed4">
+                    how can we help you?
+                </div>
+                <button type="submit" class="submit">Submit</button>
+                <input type="reset" class="reset" value="Reset">
+            </form><br><br>
+        </div>
         <br>
         <footer>
             <p class="copy img-fluid">&copy; Made By: Stav Tamam</p>
@@ -70,6 +93,26 @@
     <script src="js/wow.min.js"></script>
     <script>
         new WOW().init();
+    </script>
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
     </script>
 </body>
 
