@@ -17,6 +17,7 @@ body .container {
   background-position-x: center;
   background-position-y: center;
   z-index: -1;
+  width: 65%;
   height: auto;
   margin: 0 auto;
   background-color: rgba(245, 245, 245, 0.849);
@@ -28,6 +29,14 @@ footer {
   margin: 0 auto;
   background-color: rgba(245, 245, 245, 0.849);
   border-radius: 1.5em;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+footer .icons {
+  width: 160px;
+  height: 50px;
+  margin: 0 auto;
 }
 
 .sidenav {
@@ -163,6 +172,14 @@ h2 {
   }
   .sidenav {
     display: none;
+  }
+  .form1 {
+    width: 100%;
+    height: auto;
+  }
+  .gridtemp {
+    width: auto;
+    height: auto;
   }
 }
 
