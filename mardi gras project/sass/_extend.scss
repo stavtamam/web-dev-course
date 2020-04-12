@@ -139,7 +139,11 @@ h2 {
 
     .imgims {
         width: 100%;
-        height: 100%;
+        height: 10vh;
+        border: 2px dotted $mediacolor;
+        border-radius: 5%;
+        padding-left: 0;
+        padding-right: 0;
     }
 
     .logo {
@@ -231,6 +235,16 @@ h2 {
         font-family: $hfont;
         color: $homecolor;
     }
+
+    .item1 {
+        width: 100%;
+        height: auto;
+        border: 2px dotted $mediacolor;
+        border-radius: 5%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
 }
 
 .copy {
@@ -404,6 +418,24 @@ p {
         font-family: $hfont;
         color: $homecolor;
     }
+
+    .imgims {
+        width: 100%;
+        height: 30vh;
+        border: 2px dotted $mediacolor;
+        border-radius: 5%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .item1 {
+        width: 100%;
+        height: 60vh;
+        border: 2px dotted $mediacolor;
+        border-radius: 5%;
+        padding-left: 0;
+        padding-right: 0;
+    }
 }
 
 
@@ -471,15 +503,6 @@ input {
     ;
 }
 
-.imgims {
-    width: 100%;
-    height: 30vh;
-    border: 2px dotted $mediacolor;
-    border-radius: 5%;
-    padding-left: 0;
-    padding-right: 0;
-}
-
 .logo {
     width: 100px;
     height: 100px;
@@ -535,13 +558,4 @@ input {
         grid-row: 2/3;
         grid-column: 3/5;
     }
-}
-
-.item1 {
-    width: 100%;
-    height: 60vh;
-    border: 2px dotted $mediacolor;
-    border-radius: 5%;
-    padding-left: 0;
-    padding-right: 0;
 }
