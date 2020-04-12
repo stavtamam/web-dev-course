@@ -26,7 +26,7 @@ body {
     background-position-x: center;
     background-position-y: center;
     z-index: -1;
-    // width: 70%;
+    width: 65%;
     height: auto;
     margin: 0 auto;
     background-color: hsla(0, 0%, 96%, 0.849);
@@ -38,6 +38,13 @@ footer {
     margin: 0 auto;
     background-color: hsla(0, 0%, 96%, 0.849);
     border-radius: 1.5em;
+    box-sizing: border-box;
+
+    .icons {
+        width: 160px;
+        height: 50px;
+        margin: 0 auto;
+    }
 }
 
 .sidenav {
@@ -146,6 +153,16 @@ h2 {
 
     .sidenav {
         display: none;
+    }
+
+    .form1 {
+        width: 100%;
+        height: auto;
+    }
+
+    .gridtemp {
+        width: auto;
+        height: auto;
     }
 
 }
