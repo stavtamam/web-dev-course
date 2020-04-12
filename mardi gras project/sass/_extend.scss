@@ -168,19 +168,19 @@ h2 {
             background-color: $mediacolor;
             color: white;
             font-family: $hfont;
-            font-size: 2em;
+            font-size: 1em;
             border-radius: 1.5em;
-            position: relative;
-            left: 0;
+            position: absolute;
+            left: 15%;
         }
 
         .reset {
             background-color: $aboutcolor;
             color: white;
             font-family: $hfont;
-            font-size: 2em;
-            position: relative;
-            left: 30%;
+            font-size: 1em;
+            position: absolute;
+            right: 15%;
         }
     }
 
