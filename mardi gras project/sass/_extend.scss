@@ -137,11 +137,6 @@ h2 {
         height: auto;
     }
 
-    .spons {
-        width: 30%;
-        height: auto;
-    }
-
     .imgims {
         width: 100%;
         height: 100%;
@@ -155,16 +150,80 @@ h2 {
         display: none;
     }
 
+    .gridtemp {
+        height: auto;
+    }
+
     .form1 {
         width: 100%;
-        height: auto;
+        height: 100%;
+
+        label {
+            width: 150px;
+            height: 30px;
+            margin: 0 20%;
+        }
+
+        .submit {
+            background-color: $mediacolor;
+            color: white;
+            font-family: $hfont;
+            font-size: 2em;
+            border-radius: 1.5em;
+            position: relative;
+            left: 0;
+        }
+
+        .reset {
+            background-color: $aboutcolor;
+            color: white;
+            font-family: $hfont;
+            font-size: 2em;
+            position: relative;
+            left: 30%;
+        }
     }
 
-    .gridtemp {
-        width: auto;
-        height: auto;
+    p {
+        font-family: $tfont;
+        text-align: center;
+        font-size: $tsize;
     }
 
+    .idm {
+        border: 2px dotted $homecolor;
+        margin: 0 auto;
+        width: 250px;
+        height: 100%;
+        padding: 0.5%;
+        box-sizing: border-box;
+        border-radius: 1.5em;
+
+
+    }
+
+    .mayor {
+        width: 100%;
+        border: none;
+        height: auto;
+        margin-top: 0;
+        margin-bottom: 0;
+        box-sizing: border-box;
+        border-radius: 1.5em;
+    }
+
+
+    .info {
+        box-sizing: border-box;
+        font-family: $tfont;
+    }
+
+    h3 {
+        text-align: center;
+        font-size: 1.5em;
+        font-family: $hfont;
+        color: $homecolor;
+    }
 }
 
 .copy {
@@ -176,8 +235,8 @@ h2 {
 }
 
 .spons {
-    width: 170px;
-    height: 150px;
+    width: 92px;
+    height: 100px;
     padding: 5px;
     border-radius: 30%;
     border: 3px outset $mediacolor;
@@ -189,139 +248,150 @@ p {
     font-size: $tsize;
 }
 
-.idm {
-    margin: 0 auto;
-    border: 2px dotted $homecolor;
-    width: 50%;
-    height: 100%;
-    padding: 0.5%;
-    box-sizing: border-box;
-    border-radius: 1.5em;
 
+@media (min-width: 994px) {
 
-}
+    form {
+        padding: 1%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(9, 1fr);
+        grid-gap: 0.5%;
 
-.mayor {
-    width: 100%;
-    border: none;
-    height: auto;
-    margin-top: 0;
-    margin-bottom: 0;
-    box-sizing: border-box;
-    border-radius: 1.5em;
-}
+        .name2 {
+            grid-row: 2/3;
+            grid-column: 1/2;
+        }
 
+        .name {
+            grid-row: 3/4;
+            grid-column: 1/2;
+        }
 
-.info {
-    box-sizing: border-box;
-    font-family: $tfont;
-}
+        .feed1 {
+            grid-row: 2/3;
+            grid-column: 1/2;
+            margin-top: 15%;
+            text-align: center;
+            font-family: $tfont;
+        }
 
-h3 {
-    text-align: center;
-    font-size: 1.5em;
-    font-family: $hfont;
-    color: $homecolor;
-}
+        .lname {
+            grid-row: 3/4;
+            grid-column: 4/5;
+        }
 
-form {
-    padding: 1%;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(9, 1fr);
-    grid-gap: 0.5%;
+        .laname {
+            grid-row: 2/3;
+            grid-column: 4/5;
+        }
 
-    .name2 {
-        grid-row: 2/3;
-        grid-column: 1/2;
+        .feed2 {
+            grid-row: 2/3;
+            grid-column: 4/5;
+            margin-top: 15%;
+            text-align: center;
+            font-family: $tfont;
+        }
+
+        .lemail {
+            grid-row: 4/5;
+            grid-column: 1/2;
+        }
+
+        .email {
+            grid-row: 5/6;
+            grid-column: 1/2;
+        }
+
+        .feed3 {
+            grid-row: 4/5;
+            grid-column: 1/2;
+            margin-top: 15%;
+            text-align: center;
+            font-family: $tfont;
+        }
+
+        .message {
+            grid-row: 4/5;
+            grid-column: 4/5;
+        }
+
+        textarea {
+            grid-row: 5/8;
+            grid-column: 4/5;
+        }
+
+        .feed4 {
+            grid-row: 4/5;
+            grid-column: 4/5;
+            margin-top: 15%;
+            text-align: center;
+            font-family: $tfont;
+        }
+
+        .submit {
+            grid-row: 9/10;
+            grid-column: 1/2;
+            background-color: $mediacolor;
+            color: white;
+            font-family: $hfont;
+            font-size: 2em;
+            border-radius: 1.5em;
+        }
+
+        .reset {
+            grid-row: 9/10;
+            grid-column: 4/5;
+            background-color: $aboutcolor;
+            color: white;
+            font-family: $hfont;
+            font-size: 2em;
+        }
     }
 
-    .name {
-        grid-row: 3/4;
-        grid-column: 1/2;
-    }
-
-    .feed1 {
-        grid-row: 2/3;
-        grid-column: 1/2;
-        margin-top: 15%;
-        text-align: center;
+    p {
         font-family: $tfont;
-    }
-
-    .lname {
-        grid-row: 3/4;
-        grid-column: 4/5;
-    }
-
-    .laname {
-        grid-row: 2/3;
-        grid-column: 4/5;
-    }
-
-    .feed2 {
-        grid-row: 2/3;
-        grid-column: 4/5;
-        margin-top: 15%;
         text-align: center;
-        font-family: $tfont;
+        font-size: $tsize;
     }
 
-    .lemail {
-        grid-row: 4/5;
-        grid-column: 1/2;
+    .idm {
+        margin: 0 auto;
+        border: 2px dotted $homecolor;
+        width: 50%;
+        height: 100%;
+        padding: 0.5%;
+        box-sizing: border-box;
+        border-radius: 1.5em;
+
+
     }
 
-    .email {
-        grid-row: 5/6;
-        grid-column: 1/2;
-    }
-
-    .feed3 {
-        grid-row: 4/5;
-        grid-column: 1/2;
-        margin-top: 15%;
-        text-align: center;
-        font-family: $tfont;
-    }
-
-    .message {
-        grid-row: 4/5;
-        grid-column: 4/5;
-    }
-
-    textarea {
-        grid-row: 5/8;
-        grid-column: 4/5;
-    }
-
-    .feed4 {
-        grid-row: 4/5;
-        grid-column: 4/5;
-        margin-top: 15%;
-        text-align: center;
-        font-family: $tfont;
-    }
-
-    .submit {
-        grid-row: 9/10;
-        grid-column: 1/2;
-        background-color: $mediacolor;
-        color: white;
-        font-family: $hfont;
-        font-size: 2em;
+    .mayor {
+        width: 100%;
+        border: none;
+        height: auto;
+        margin-top: 0;
+        margin-bottom: 0;
+        box-sizing: border-box;
         border-radius: 1.5em;
     }
 
-    .reset {
-        grid-row: 9/10;
-        grid-column: 4/5;
-        background-color: $aboutcolor;
-        color: white;
+
+    .info {
+        box-sizing: border-box;
+        font-family: $tfont;
+    }
+
+    h3 {
+        text-align: center;
+        font-size: 1.5em;
         font-family: $hfont;
-        font-size: 2em;
+        color: $homecolor;
     }
 }
+
 
 label {
     text-align: center;
