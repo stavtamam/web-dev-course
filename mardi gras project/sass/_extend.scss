@@ -186,6 +186,13 @@ h2 {
             width: 65px;
             height: 30px;
         }
+
+        label {
+            text-align: center;
+            font-size: 2em;
+            font-family: $hfont;
+            color: $FAQcolor;
+        }
     }
 
     p {
@@ -352,6 +359,13 @@ p {
             font-family: $hfont;
             font-size: 2em;
         }
+
+        label {
+            text-align: center;
+            font-size: 2em;
+            font-family: $hfont;
+            color: $homecolor;
+        }
     }
 
     p {
@@ -397,12 +411,6 @@ p {
 }
 
 
-label {
-    text-align: center;
-    font-size: 2em;
-    font-family: $hfont;
-    color: $FAQcolor;
-}
 
 textarea,
 input {
