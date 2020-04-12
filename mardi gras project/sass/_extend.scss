@@ -161,7 +161,10 @@ h2 {
         label {
             width: 150px;
             height: 30px;
-            margin: 0 20%;
+            text-align: left;
+            font-size: 2em;
+            font-family: $hfont;
+            color: $contactcolor;
         }
 
         .submit {
@@ -185,13 +188,6 @@ h2 {
             right: 15%;
             width: 65px;
             height: 30px;
-        }
-
-        label {
-            text-align: center;
-            font-size: 2em;
-            font-family: $hfont;
-            color: $FAQcolor;
         }
     }
 

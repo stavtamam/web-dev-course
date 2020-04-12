@@ -179,7 +179,10 @@ h2 {
   .form1 label {
     width: 150px;
     height: 30px;
-    margin: 0 20%;
+    text-align: left;
+    font-size: 2em;
+    font-family: "Pattaya";
+    color: #0D0D0D;
   }
   .form1 .submit {
     background-color: #F2CC0F;
@@ -201,12 +204,6 @@ h2 {
     right: 15%;
     width: 65px;
     height: 30px;
-  }
-  .form1 label {
-    text-align: center;
-    font-size: 2em;
-    font-family: "Pattaya";
-    color: #F2F2F2;
   }
   p {
     font-family: "Roboto Slab";
