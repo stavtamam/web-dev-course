@@ -189,6 +189,8 @@ h2 {
     border-radius: 1.5em;
     position: absolute;
     left: 15%;
+    width: 65px;
+    height: 30px;
   }
   .form1 .reset {
     background-color: #8CBF3F;
@@ -197,6 +199,8 @@ h2 {
     font-size: 1em;
     position: absolute;
     right: 15%;
+    width: 65px;
+    height: 30px;
   }
   p {
     font-family: "Roboto Slab";
