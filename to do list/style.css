@@ -1,0 +1,117 @@
+* {
+    margin: 5px;
+    padding: 0;
+}
+
+#container {
+    width: 541px;
+    height: 700px;
+    margin: 0 auto;
+    background-image: url(https://i.pinimg.com/564x/0f/98/d5/0f98d5ed06f8c1f1fa4abfa0f3b177c3.jpg);
+    background-size: cover;
+    border: 2px dotted rgba(255, 0, 0, 0.721);
+}
+
+h1,
+h2 {
+    text-align: center;
+    color: rgb(132, 132, 132);
+    font-family: 'Dancing Script', cursive;
+}
+
+.title {
+    text-align: center;
+    width: 90%;
+    height: 30px;
+    margin-left: 5%;
+    border: none;
+    font-family: 'Dancing Script', cursive;
+    font-size: 25px;
+}
+
+.add {
+    margin-left: 35%;
+    width: 25%;
+    height: 6vh;
+    background-color: rgba(24, 133, 24, 0.748);
+    color: black;
+    border: none;
+    border-radius: 0.2em;
+    font-size: 25px;
+    font-family: 'Dancing Script', cursive;
+}
+
+.todo,
+.completed {
+    list-style-type: none;
+}
+
+li {
+
+    color: rgb(132, 132, 132);
+    width: 95%;
+    height: 35px;
+    margin: 5px;
+    border-radius: 0.5em;
+    font-family: 'Dancing Script', cursive;
+    font-size: 24px;
+}
+
+span {
+    margin: 5px;
+}
+
+hr {
+    margin-left: 5px;
+}
+
+.edit,
+.delete {
+    outline: none;
+    border-radius: 0.5em;
+    float: right;
+    width: 90px;
+    height: 30px;
+    font-family: 'Dancing Script', cursive;
+    background-color: rgba(255, 166, 0, 0.748);
+    font-size: 20px;
+    border: none;
+
+}
+
+.delete {
+    background-color: rgba(255, 0, 0, 0.748);
+    border: none;
+}
+
+.edit2 {
+    display: none;
+}
+
+.done {
+    border-radius: 0.5em;
+    width: 90px;
+    height: 30px;
+    float: right;
+    font-family: 'Dancing Script', cursive;
+    font-size: 20px;
+    background-color: rgba(24, 133, 24, 0.748);
+    border: none;
+}
+
+.done2 {
+    display: none;
+}
+
+.editinput {
+    display: none;
+}
+
+.editinp {
+    border: none;
+    font-family: 'Dancing Script', cursive;
+    color: rgb(132, 132, 132);
+    font-size: 40px;
+    width: 200px;
+    background-color: rgba(255, 255, 255, 0);
+}
