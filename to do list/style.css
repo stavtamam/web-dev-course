@@ -109,9 +109,10 @@ hr {
 
 .editinp {
     border: none;
+    border-bottom: 1px solid black;
     font-family: 'Dancing Script', cursive;
     color: rgb(132, 132, 132);
-    font-size: 40px;
-    width: 200px;
+    font-size: 1em;
+    width: 20%;
     background-color: rgba(255, 255, 255, 0);
 }
