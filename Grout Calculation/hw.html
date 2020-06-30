@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Holtwood+One+SC&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Suez+One&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <title>HW</title>
+    <style>
+        body {
+            /* direction: rtl; */
+            background-color: red;
+            color: white;
+        }
+
+        div {
+            background-color: black;
+            color: white;
+            margin: 5% auto;
+            border: 2px solid darkred;
+            border-radius: 3%;
+            width: 450px;
+            height: 400px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        h1 {
+            font-family: 'Holtwood One SC', serif;
+            text-align: center;
+        }
+
+        select,
+        input,
+        label,
+        span {
+            font-family: 'Suez One', serif;
+            font-size: 1em;
+        }
+
+        span {
+            position: absolute;
+            left: 50%;
+            font-size: 2em;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <form action="">
+            <h1>Grout Claculation</h1>
+            <label for="">Area in SM</label><br>
+            <input id="inp1" type="number"><br><br>
+            <label for="">Gap Width:</label><br>
+            <select name="" id="select2"><br>
+                <option value="">Gap Width in CM</option>
+                <option value="two">2</option>
+                <option value="three">3</option>
+                <option value="four">4</option>
+                <option value="five">5</option>
+                <option value="six">6</option>
+                <option value="eight">8</option>
+            </select><br><br>
+            <label for="">Tile Size:</label><br>
+            <select name="" id="select1">
+                <option value="">Tile Size in CM</option>
+            </select><br><br>
+            <input type="button" id="result" value="Calculate">
+            <span id="span"></span>
+        </form>
+    </div>
+
+
+    <script>
+        async function findValue() {
+            let res;
+            let inputVal = $('#inp1').val();
+            $.getJSON("roba.json", function (data) {
+                $.each(data.calc, function (key, val) {
+                    if ($("#select1 option:selected").val() == val.floorSize) {
+                        $.each(val.size, function (k, v) {
+                            if ($("#select2 option:selected").val() == k) {
+                                res = v;
+                                console.log(res)
+                                printRes(inputVal * v + " Grout");
+                            }
+                        })
+                    }
+                })
+                return res;
+            })
+        }
+
+        function getData() {
+            $.getJSON("roba.json", function (data) {
+                let x = '<option> Tile Size in CM </option>';
+                $.each(data.calc, function (key, val) {
+                    x += `<option>${val.floorSize}</option>`
+                })
+                $("#select1").html(x);
+            })
+
+        }
+
+        function printRes(val) {
+            $("#span").html(val)
+            console.log(val);
+        }
+
+        function init() {
+            getData();
+            document.getElementById("result").addEventListener("click", findValue)
+        }
+        init()
+    </script>
+</body>
+
+</html>
