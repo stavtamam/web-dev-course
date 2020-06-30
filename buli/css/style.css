@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100%;
+  height: 110vh;
+  font-family: 'Amatic SC', cursive;
+  direction: rtl;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(203, 85, 26, 0.517)), color-stop(white), color-stop(white), to(rgba(203, 85, 26, 0.517)));
+  background-image: linear-gradient(to bottom, rgba(203, 85, 26, 0.517), white, white, rgba(203, 85, 26, 0.517));
+  background-repeat: no-repeat;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+  font-size: 4em;
+  color: white;
+}
+
+.navbar {
+  width: 70%;
+}
+
+li,
+a {
+  list-style-type: none;
+  padding: 0;
+  font-size: 1.5em;
+  text-align: right;
+  color: rgba(203, 85, 26, 0.517);
+}
+
+a:hover {
+  font-size: 1.5em;
+  color: white;
+  text-shadow: 0 0 5px #ff7733, 0 0 5px #ff9966, 0 0 5px #993300;
+}
+
+#navi {
+  width: 20%;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 50vh;
+}
+
+hr {
+  width: 100%;
+}
+
+h2 {
+  text-align: center;
+  font-size: 3em;
+  color: rgba(203, 85, 26, 0.517);
+}
+
+.copy {
+  text-align: center;
+}
+/*# sourceMappingURL=style.css.map */
