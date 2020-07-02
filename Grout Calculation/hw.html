@@ -48,7 +48,7 @@
 
         span {
             position: absolute;
-            left: 50%;
+            left: 45%;
             font-size: 2em;
         }
 
@@ -67,11 +67,11 @@
     <div>
         <form action="">
             <h1>Grout Calculation</h1>
-            <label for="">Area in SM</label><br>
+            <label for="">Area in sqm</label><br>
             <input id="inp1" type="number"><br><br>
             <label for="">Gap Width:</label><br>
             <select name="" id="select2"><br>
-                <option value="">Gap Width in CM</option>
+                <option value="">Gap Width in cm</option>
                 <option value="two">2</option>
                 <option value="three">3</option>
                 <option value="four">4</option>
@@ -97,10 +97,13 @@
                 $.each(data.calc, function (key, val) {
                     if ($("#select1 option:selected").val() == val.floorSize) {
                         $.each(val.size, function (k, v) {
-                            if ($("#select2 option:selected").val() == k) {
+                            if ($("#select2 option:selected").val() == k && inputVal !=
+                                "" && inputVal != 0) {
                                 res = v;
                                 console.log(res)
+
                                 printRes(inputVal * v + " Grout");
+
                             }
                         })
                     }
