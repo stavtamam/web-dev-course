@@ -81,7 +81,7 @@
             </select><br><br>
             <label for="">Tile Size:</label><br>
             <select name="" id="select1">
-                <option value="">Tile Size in CM</option>
+                <option value="">Tile Size in cm</option>
             </select><br><br>
             <input type="button" id="result" value="Calculate">
             <span id="span"></span>
@@ -114,7 +114,7 @@
 
         function getData() {
             $.getJSON("roba.json", function (data) {
-                let x = '<option> Tile Size in CM </option>';
+                let x = '<option> Tile Size in cm </option>';
                 $.each(data.calc, function (key, val) {
                     x += `<option>${val.floorSize}</option>`
                 })
