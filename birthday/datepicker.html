@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Date Picker</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&family=Sigmar+One&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url("birth.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        .p {
+            font-family: 'Sigmar One', cursive;
+            color: peachpuff;
+            font-size: 4em;
+        }
+
+        .span {
+            font-family: 'Sigmar One', cursive;
+            color: peachpuff;
+            font-size: 2em;
+        }
+
+        input {
+            /* position: relative; */
+            border: 7px double rgb(155, 18, 18);
+            text-align: center;
+        }
+
+        .btn {
+            border: 2px groove rgb(147, 22, 22);
+            border-radius: 1em;
+            background-color: rgb(179, 20, 20);
+            color: peachpuff;
+        }
+
+        .div {
+            text-align: center;
+            width: 600px;
+            height: 300px;
+            position: relative;
+            top: 25%;
+            left: 2%;
+            box-sizing: border-box;
+        }
+
+        @media only screen and (max-width: 700px) {
+            .div {
+                width: 360px;
+                height: 300px;
+            }
+
+            .span {
+                font-size: 1.5em;
+
+            }
+
+            .p {
+                font-size: 3em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <p class="p">When Is Your Birthday:</p>
+    <div class="div">
+        <br><input type="text" id="datepicker">
+        <button onclick="calculate()" class="btn">Check</button><br>
+        <span class="span"></span>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#datepicker").datepicker({
+                onSelect: function (dateText, inst) {
+                    console.log("selected:" + dateText)
+                    if (inst.selectedMonth != -1) {
+                        inst.selectedMonth++;
+                    }
+                },
+                // dateFormat: "dd/mm/yy",
+                changeYear: true,
+                yearRange: "+0:+80",
+                changeMonth: true,
+                showButtonPanel: true,
+                currentText: $.datepicker.formatDate('MM dd, yy', new Date()),
+            });
+            $("#datepicker").datepicker('setDate', 'today');
+        });
+
+        function calculate() {
+            let birthday = $("#datepicker").val();
+            let birthDate = new Date(birthday).getTime();
+            let now = new Date().getTime();
+            let calc = Math.floor((birthDate - now) / (1000 * 60 * 60 * 24) + 1);
+            console.log(calc);
+            if (calc === 0) {
+                $("span").html("<br> YOUR BIRTHDAY IS TODAY <br> HAPPY BIRTHDAY!!");
+            } else {
+                $("span").html("<br> YOU HAVE  " + calc + "  DAYS UNTIL YOUR BIRTHDAY!!")
+            }
+        }
+    </script>
+</body>
+
+</html>
