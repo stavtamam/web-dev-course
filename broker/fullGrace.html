@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="he-IL">
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+        integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <title>מחשבון גרייס מלא</title>
+
+</head>
+<!-- Body Wrapper-->
+
+<body class="rtl">
+    <div class="maincontainer">
+        <div class="pagetitle">
+            <h1>מחשבון גרייס מלא</h1>
+        </div>
+        <div class="contentwrapper">
+
+            <div class="contentfull">
+
+
+                <div class="" id="post-1254">
+
+                    <div class="entry">
+                        <style>
+                            .tdP {
+                                cursor: pointer;
+                            }
+
+                            td {
+                                border: 2px solid hsl(0, 0%, 31%);
+                                padding: 6px;
+                            }
+
+
+
+                            body {
+                                background-color: hsl(0, 0%, 12%);
+                                color: white;
+                            }
+
+                            input {
+                                display: inline-table !important;
+                                background-color: hsl(0, 0%, 12%) !important;
+                                color: hsl(64, 71%, 61%);
+                                border: 2px solid hsl(0, 0%, 31%);
+                                border-radius: 2px;
+                            }
+
+                            i {
+                                color: hsl(64, 71%, 61%);
+                            }
+
+                            @media only screen and (max-width: 765px) {
+                                body {
+                                    width: 300px;
+
+                                }
+                            }
+
+                            @media only screen and (max-width: 2000px) {
+                                .maincontainer {
+                                    width: 500px;
+                                    height: 700px;
+                                    margin: 0 auto;
+                                }
+                            }
+                        </style>
+
+                        <script>
+                            var m;
+                            var keren, madadKeren;
+                            var Totalsum;
+                            var interest;
+                            var totalWithInterest, madadTotalWithInterest;
+                            var index, IndexOld = 0;
+                            var payment = 0, madadPayment = 0;
+                            var grase, graseTime;
+                            var calcType = "payment";
+
+                            function addcommas(x) {
+                                return x.toString().replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                            }
+
+                            function parseN(num) {
+                                if (num == 0) {
+                                    num = 0;
+                                    return 0;
+                                } else {
+                                    gg = parseFloat(num.toString().split(",").join("").replace(/[^0-9-.]/g, ''));
+                                    return gg;
+                                }
+                            }
+
+                            function $$(id) {
+                                return document.getElementById(id);
+                            }
+                            function PMT(i, n, p) {
+                                var num = i * p * Math.pow((1 + i), n) / (1 - Math.pow((1 + i), n));
+                                num = Round2Digit(num);
+
+                                return num;
+                            }
+                            function GetNumMonths(i, p, a) {
+                                var num = 1;
+                                while (a * (i / (1 - 1 / Math.pow((1 + i), num))) >= p && num != 1200) {
+                                    num++;
+                                }
+                                return num;
+                            }
+                            function GetTotalAmount(i, n, p) {
+                                var num;
+                                var ribit = Math.pow((1 + i), n);
+                                num = p / (i / (1 - 1 / ribit));
+                                return num;
+                            }
+                            function Round2Digit(num) {
+                                return num = Math.abs(Math.round(num * 100) / 100);
+                            }
+                            function RoundInt(num) {
+                                return num = Math.abs(Math.round(num));
+                            }
+                            function RoundUp(num) {
+                                //  מעגל את המספר למעלה עד למספר 1 אחרי הנקודה
+                                num = Math.ceil(num);
+
+                                return num;
+                            }
+                            function RoundDown(num) {
+                                num = Math.floor(num);
+                                return num;
+                            }
+
+                            function firstLoad() {
+                                TotalSum.value = '41,000';
+                                DurationM.value = '120';
+                                InterestY.value = '2.5';
+                                IndexY.value = '2.5';
+                                GraseM.value = '24';
+                                updateCalcType('payment');
+                                updateCalcTypeFields();
+                                Calc();
+                            }
+
+                            function MovePage(toPage) {
+                                var pageUrl = "http://bendor.tk/stav/ben/";
+                                var urlQuery = "";
+                                if (toPage == "shpitzer") { pageUrl += "spitzer.html"; }
+                                if (toPage == "shava") { pageUrl += "keren.html"; }
+                                if (toPage == "graseM") { pageUrl += "fullGrace.html"; }
+                                if (toPage == "graseH") { pageUrl += "grace.html"; }
+                                if (toPage == "balon") { pageUrl += "מחשבון-בלון"; }
+
+                                window.location = pageUrl;
+                            }
+
+                            function ShowContent(id) {
+                                $$('pageType').style.display = 'none';
+                                $$('calcTypeChoose').style.display = 'none';
+                                var i;
+                                for (i = 0; i < document.getElementsByName('tdInput').length; i++) {
+                                    document.getElementsByName('tdInput').item(i).style.display = '';
+                                    document.getElementsByName('tdSpan').item(i).style.display = 'none';
+                                }
+                                $$('tableCalcValues').style.width = "550px";
+                            }
+
+                            function OrganizeContent(id) {
+                                //var prtContent = document.getElementById(id);
+
+                                $$('pageType').style.display = '';
+                                var calcTypeText = "";
+                                if (calcType == 'amount') { calcTypeText = "סכום הלוואה"; }
+                                if (calcType == 'period') { calcTypeText = "תקופה"; }
+                                if (calcType == 'payment') { calcTypeText = "החזר חודשי"; }
+                                $$('calcTypeChoose').innerHTML = 'חישבת נתונים עבור ' + calcTypeText;
+                                $$('calcTypeChoose').style.display = '';
+
+                                var i;
+                                for (i = 0; i < document.getElementsByName('tdInput').length; i++) {
+                                    document.getElementsByName('tdInput').item(i).style.display = 'none';
+                                    document.getElementsByName('tdSpan').item(i).style.display = '';
+                                }
+                                $$('tableCalcValues').style.width = "200px";
+                                //return prtContent;
+                            }
+
+                            function PostBackByReturnKey(e, buttonid) {
+                                var evt = e ? e : window.event;
+                                if (evt.keyCode == 13) {
+                                    __doPostBack(buttonid, '');
+                                    return true;
+                                }
+                            }
+
+                            function displayMadad() {
+                                if (IndexY.value > 0) {
+                                    $$('tdMadadKerenRemain').style.display = '';
+                                    $$('tdMadadKerenReturn').style.display = '';
+                                    $$('tdMadadInterestReturn').style.display = '';
+                                    $$('tdMadadPayment').style.display = '';
+                                    $$('tdMadadPayedSoFar').style.display = '';
+                                    $$('trMadad').style.display = '';
+                                    $$('trDif').style.display = '';
+
+                                    $$('tdKerenRemain').style.display = 'none';
+                                    $$('tdKerenReturn').style.display = 'none';
+                                    $$('tdInterestReturn').style.display = 'none';
+                                    $$('tdPayment').style.display = 'none';
+                                    $$('tdPayedSoFar').style.display = 'none';
+                                }
+                                else {
+                                    $$('tdMadadKerenRemain').style.display = 'none';
+                                    $$('tdMadadKerenReturn').style.display = 'none';
+                                    $$('tdMadadInterestReturn').style.display = 'none';
+                                    $$('tdMadadPayment').style.display = 'none';
+                                    $$('tdMadadPayedSoFar').style.display = 'none';
+                                    $$('trMadad').style.display = 'none';
+                                    $$('trDif').style.display = 'none';
+
+                                    $$('tdKerenRemain').style.display = '';
+                                    $$('tdKerenReturn').style.display = '';
+                                    $$('tdInterestReturn').style.display = '';
+                                    $$('tdPayment').style.display = '';
+                                    $$('tdPayedSoFar').style.display = '';
+                                }
+                            }
+
+                            function updateValues(a, mon, p) {
+                                TotalSum.value = Round2Digit(parseN(a));
+                                DurationM.value = mon;
+                                PaymentM.value = Round2Digit(p);
+
+                                TotalSumSpan.innerHTML = addcommas(TotalSum.value.toString());
+                                TotalSum.value = TotalSumSpan.innerHTML
+                                DurationMSpan.innerHTML = DurationM.value;
+                                DurationYSpan.innerHTML = DurationY.value;
+                                GraseMSpan.innerHTML = GraseM.value;
+                                GraseYSpan.innerHTML = GraseY.value;
+                                PaymentMSpan.innerHTML = addcommas(PaymentM.value.toString());
+                                PaymentM.value = PaymentMSpan.innerHTML
+                                InterestYSpan.innerHTML = addcommas(InterestY.value.toString());
+                                InterestY.value = InterestYSpan.innerHTML
+                                IndexYSpan.innerHTML = addcommas(IndexY.value.toString());
+                            }
+
+                            function updateCalcType(calcTypeValue) {
+                                calcType = calcTypeValue;
+
+                                updateCalcTypeFields();
+                            }
+
+                            function updateCalcTypeFields() {
+                                TotalSum.disabled = '';
+                                DurationM.disabled = '';
+                                PaymentM.disabled = '';
+                                DurationY.disabled = '';
+                                TotalSum.style.background = '';
+                                DurationM.style.background = '';
+                                PaymentM.style.background = '';
+                                DurationY.style.background = '';
+                                tdCTamount.style.background = '';
+                                tdCTperiod.style.background = '';
+                                tdCTpayment.style.background = '';
+                                if (calcType == 'amount') {
+                                    TotalSum.disabled = 'disabled';
+                                    TotalSum.style.background = 'lightgray';
+                                    tdCTamount.style.background = 'hsl(64, 71%, 61%)';
+                                    tdCTamount.style.color = 'hsl(0, 0%, 31%)';
+                                }
+                                if (calcType == 'period') {
+                                    DurationM.disabled = 'disabled';
+                                    DurationY.disabled = 'disabled';
+                                    DurationM.style.background = 'lightgray';
+                                    DurationY.style.background = 'lightgray';
+                                    tdCTperiod.style.background = 'hsl(64, 71%, 61%)';
+                                    tdCTperiod.style.color = 'hsl(0, 0%, 31%)';
+                                }
+                                if (calcType == 'payment') {
+                                    PaymentM.disabled = 'disabled';
+                                    PaymentM.style.background = 'lightgray';
+                                    tdCTpayment.style.background = 'hsl(64, 71%, 61%)';
+                                    tdCTpayment.style.color = 'hsl(0, 0%, 31%)';
+                                }
+                            }
+
+                            function checkDetails() {
+                                $$('divDetails1').style.display = ($$('details').style.display != 'none' ? 'none' : '');
+                                $$('divDetails2').style.display = ($$('details').style.display != 'none' ? 'none' : '');
+                                $$('details').style.display = ($$('details').style.display != 'none' ? 'none' : '');
+                            }
+
+                            function UpdateInterest(line, direction, type) {
+                                var jump = 0.25;
+                                var i;
+                                if (direction == '-1') jump = jump * -1;
+                                if (direction == '0') jump = 0;
+
+                                var newInterest = 0, newIndex = 0;
+                                var garsePerMonth, madadGrasePerMonth, newPayment = 0;
+
+                                newInterest = Number($$('interest' + (line)).value);
+                                newIndex = Number($$('index' + (line)).value);
+
+                                madadTotalWithInterest = 0;
+                                totalWithInterest = 0;
+
+                                if (type == 'interest') {
+                                    if (line > 0) {
+                                        totalWithInterest = $$('payedSoFar' + (Number(line) - 1)).innerHTML;
+                                    }
+                                    else {
+                                        totalWithInterest = 0;
+                                    }
+                                    newInterest = newInterest + jump;
+                                }
+                                if (type == 'index') {
+                                    newIndex = newIndex + jump;
+                                }
+                                if (line > 0) {
+                                    if (newIndex > 0)
+                                        madadTotalWithInterest = Number($$('MadadPayedSoFar' + (Number(line) - 1)).innerHTML);
+                                    totalWithInterest = Number($$('payedSoFar' + (Number(line) - 1)).innerHTML);
+                                }
+                                indexValue = Math.pow(1 + Number(newIndex / 100), 1 / 12);
+
+                                var tempKerenRemain = Number($$('KerenRemain' + line).innerHTML);
+                                var tempMadadKerenRemain = 0;
+                                if (newIndex > 0) {
+                                    tempMadadKerenRemain = Number($$('MadadKerenRemain' + line).innerHTML);
+                                    madadPayment = Number($$('MadadPayment' + line).innerHTML);
+                                }
+                                m = DurationM.value;
+                                payment = Number($$('lastPayment').innerHTML);
+
+                                if (line + 1 < m) { IndexOld = Number($$('index' + (line + 1)).value); }
+                                else { IndexOld = Number($$('index' + (line - 1)).value); }
+                                IndexOld = Math.pow(1 + IndexOld / (100), 1 / 12);
+
+                                var tempInterestReturn = 0, tempMadadInterestReturn = 0;
+                                var tempKerenReturn = 0, tempMadadKerenReturn = 0;
+                                //tempMadadKerenRemain = Number(tempMadadKerenRemain) - Number(tempMadadKerenRemain * (IndexOld / 1200));
+
+                                tempMadadKerenRemain = Number(tempMadadKerenRemain) / (Number(IndexOld));
+                                madadPayment = PMT((newInterest / 1200), m - line, tempMadadKerenRemain);
+
+                                //            for(i=0;i<line;i++)
+                                //                totalWithInterest = parseInt(totalWithInterest) + parseInt($$('payment' + i).innerHTML);
+
+                                for (i = line; i < Number(m); i++) {
+                                    if (newIndex > 0) {
+                                        tempMadadKerenRemain = Number(tempMadadKerenRemain) * indexValue;
+                                        if (i == graseTime) {
+                                            madadPayment = PMT((newInterest / 1200), m - graseTime, tempMadadKerenRemain);
+                                            //amadadPayment = madadPayment * indexValue;
+                                            tempMadadInterestReturn = tempMadadKerenRemain * (newInterest / 1200);
+                                            tempMadadKerenReturn = madadPayment - tempMadadInterestReturn;
+                                        }
+                                        if (i > graseTime) {
+                                            tempMadadInterestReturn = tempMadadKerenRemain * (newInterest / 1200);
+                                            madadPayment = madadPayment * indexValue;
+                                            if (i == (m - 1)) {
+                                                tempMadadKerenReturn = RoundDown(tempMadadKerenRemain);
+                                                madadPayment = Number(tempMadadKerenReturn) + Number(tempMadadInterestReturn);
+                                            }
+                                            else { tempMadadKerenReturn = madadPayment - tempMadadInterestReturn; }
+                                        }
+                                        if (i < graseTime) {
+                                            tempMadadKerenReturn = tempMadadKerenRemain * (newInterest / 1200) * -1;
+                                            madadPayment = 0;
+                                        }
+                                        $$('MadadKerenRemain' + i).innerHTML = RoundDown(tempMadadKerenRemain);
+                                        $$('MadadKerenReturn' + i).innerHTML = RoundUp(tempMadadKerenReturn);
+                                        $$('MadadInterestReturn' + i).innerHTML = RoundDown(tempMadadInterestReturn);
+                                        $$('MadadPayment' + i).innerHTML = RoundDown(madadPayment);
+                                        madadTotalWithInterest = madadTotalWithInterest + madadPayment;
+                                        $$('MadadPayedSoFar' + i).innerHTML = RoundDown(madadTotalWithInterest);
+
+                                        tempMadadKerenRemain = tempMadadKerenRemain - tempMadadKerenReturn;
+
+                                        $$('index' + i).value = newIndex;
+                                        $$('indexSpan' + i).innerHTML = newIndex;
+                                    }
+                                    if (type == 'interest') {
+                                        if (i >= graseTime) {
+                                            if (i == graseTime) { payment = PMT((newInterest / 1200), m - graseTime, tempKerenRemain); }
+                                            tempInterestReturn = tempKerenRemain * (newInterest / 1200);
+                                            tempKerenReturn = payment - tempInterestReturn;
+                                            if (i == (m - 1)) {
+                                                tempKerenReturn = RoundDown(tempKerenRemain);
+                                                payment = Number(tempKerenReturn) + Number(tempInterestReturn);
+                                            }
+                                        }
+                                        else {
+                                            payment = 0;
+                                            tempKerenReturn = tempKerenRemain * (newInterest / 1200) * -1;
+                                        }
+
+                                        $$('interest' + i).value = newInterest;
+                                        $$('interestSpan' + i).innerHTML = newInterest;
+                                        $$('KerenRemain' + i).innerHTML = RoundDown(tempKerenRemain);
+                                        $$('KerenReturn' + i).innerHTML = RoundUp(tempKerenReturn);
+                                        $$('InterestReturn' + i).innerHTML = RoundDown(tempInterestReturn);
+                                        $$('payment' + i).innerHTML = RoundDown(payment);
+                                        totalWithInterest = Number(totalWithInterest) + Number(payment);
+                                        $$('payedSoFar' + i).innerHTML = RoundDown(totalWithInterest);
+
+                                        tempKerenRemain = tempKerenRemain - tempKerenReturn;
+                                    }
+                                }
+                                tempInterestReturn = tempKerenRemain * (newInterest / 1200);
+                                tempKerenReturn = payment - tempInterestReturn;
+                                tempKerenRemain = tempKerenRemain - tempKerenReturn;
+
+                                if (type == 'interest') {
+                                    $$('totalAmount').innerHTML = RoundInt(totalWithInterest);
+                                    $$('totalInterest').innerHTML = RoundInt(totalWithInterest - Totalsum);
+                                    $$('lastPayment').innerHTML = RoundInt(payment);
+                                    $$('totalPriceValue').innerHTML = Round2Digit(totalWithInterest / Totalsum);
+                                }
+                                else {
+                                    totalWithInterest = $$('totalAmount').innerHTML;
+                                }
+                                $$('MadadTotalAmount').innerHTML = RoundInt(madadTotalWithInterest);
+                                $$('MadadTotalInterest').innerHTML = RoundInt(madadTotalWithInterest - Totalsum);
+                                $$('MadadLastPayment').innerHTML = RoundInt(madadPayment);
+                                $$('MadadTotalPriceValue').innerHTML = Round2Digit(madadTotalWithInterest / Totalsum);
+
+                                $$('DifTotalAmount').innerHTML = RoundInt(madadTotalWithInterest - totalWithInterest);
+                                $$('DifLastPayment').innerHTML = RoundInt(madadPayment) - RoundInt(payment);
+                                $$('DifTotalPriceValue').innerHTML = Round2Digit(Round2Digit(madadTotalWithInterest / Totalsum) - Round2Digit(totalWithInterest / Totalsum));
+
+                                if (newIndex > 0) { spanRibit.innerHTML = RoundInt(madadTotalWithInterest - Totalsum); }
+                                else { spanRibit.innerHTML = RoundInt(totalWithInterest - Totalsum); }
+                            }
+
+
+                            function Calc() {
+                                m = DurationM.value;
+                                Totalsum = parseN(TotalSum.value);
+                                console.log(TotalSum.value)
+                                console.log(addcommas(TotalSum.value));
+                                interest = InterestY.value;
+                                index = Number(IndexY.value);
+                                payment = Number(PaymentM.value);
+                                graseTime = Number(GraseM.value);
+                                var totalPayment = 0;
+
+                                indexValue = Math.pow(1 + index / 100, 1 / 12);
+
+                                if (calcType == 'period') {
+                                    m = GetNumMonths((interest / 1200), payment, Totalsum) + Number(graseTime);
+                                }
+                                if (calcType == 'amount') {
+                                    //Totalsum = GetTotalAmount((interest / 1200), m, payment);
+                                    Totalsum = GetTotalAmount((interest / 1200), m - graseTime, payment);
+                                }
+                                grasePerMonth = (interest / 1200) * Totalsum;
+                                grase = 0;
+
+                                for (i = 0; i < graseTime; i++) {
+                                    grase = grase + grasePerMonth + (grase * (interest / 1200));
+                                }
+                                totalWithInterest = Number(Totalsum) + Number(grase);
+
+                                if (calcType == 'payment') {
+                                    payment = PMT((interest / 1200), m - graseTime, totalWithInterest);
+                                }
+
+                                DurationY.value = parseInt(m / 12);
+                                GraseY.value = parseInt(graseTime / 12);
+                                keren = Number(Totalsum);
+
+                                totalWithInterest = 0;
+                                madadTotalWithInterest = 0;
+
+                                var HTML_details = "";
+                                HTML_details += "<div id='divDetails1' style='text-align:center;display:none;'>";
+                                HTML_details += "<p name='tdSpan'></p>";
+                                HTML_details += "<table id=\"details\" cellspacing=\"1\" style=\"border:1px solid black;display:none;table-layout:fixed;margin-bottom:15px;text-align:center;\">";
+                                HTML_details += "<thead><tr class=\"trCaption\"><th style='width:45px;'>חודש</th>";
+                                HTML_details += "<th>אחוז הריבית</th><th>אחוז המדד</th><th id='tdKerenRemain'>יתרת הקרן</th><th id='tdKerenReturn'>החזר הקרן</th><th id='tdInterestReturn'>החזר הריבית</th><th id='tdPayment'>החזר חודשי</th><th id='tdPayedSoFar'>שולם עד כה</th>";
+                                HTML_details += "<th id='tdMadadKerenRemain'>יתרת קרן מוצמדת</th><th id='tdMadadKerenReturn'>החזר קרן מוצמד</th><th id='tdMadadInterestReturn'>החזר ריבית מוצמד</th><th id='tdMadadPayment'>החזר חודשי מוצמד</th><th id='tdMadadPayedSoFar'>שולם עד כה</th></tr></thead><tbody>";
+
+                                totalWithInterest = 0;
+
+                                var tempInterestReturn = 0, tempMadadInterestReturn = 0;
+                                var tempKerenReturn = 0, tempMadadKerenReturn = 0;
+                                var tempKerenRemain = keren, tempMadadKerenRemain = keren;
+
+                                var trClass = "trRegular";
+                                var i, newPayment = 0;
+
+                                for (i = 0; i < Number(m); i++) {
+
+                                    if (i == graseTime) {
+                                        HTML_details += "<tr><td colspan='8'>תמה תקופת הגרייס</td></tr>";
+                                    }
+                                    if (((i + 1) % 12) == 0) trClass = "trMark"; else trClass = "trRegular";
+                                    HTML_details += "<tr class=\"" + trClass + "\"><td>" + (i + 1) + "</td>";
+                                    HTML_details += "<td name='tdSpan' style='display:none';><span id='interestSpan" + i + "'>" + interest + "</span></td>";
+                                    HTML_details += "<td name='tdInput'><input type='button' value='-' onclick=\"UpdateInterest(" + i + ",'-1','interest');\" />";
+                                    HTML_details += "<input id='interest" + i + "' type='text' value='" + interest + "' onChange=\"UpdateInterest(" + i + ",0,'interest')\" class='inpCss' />";
+                                    HTML_details += "<input type='button' value='+' onclick=\"UpdateInterest(" + i + ",1,'interest')\" /></td>";
+                                    HTML_details += "<td name='tdSpan' style='display:none';><span id='indexSpan" + i + "'>" + index + "</span></td>";
+                                    if (index > 0) {
+                                        HTML_details += "<td name='tdInput'><input type='button' value='-' onclick=\"UpdateInterest(" + i + ",'-1','index');\" />";
+                                        HTML_details += "<input id='index" + i + "' type='text' value='" + index + "' onChange=\"UpdateInterest(" + i + ",0,'index')\" class='inpCss' />";
+                                        HTML_details += "<input type='button' value='+' onclick=\"UpdateInterest(" + i + ",1,'index')\" /></td>";
+                                    }
+                                    else {
+                                        HTML_details += "<td name='tdInput'><input id='index" + i + "' type='text' value='" + index + "' disabled='disabled' class='inpCss'/></td>";
+                                    }
+
+                                    if (i >= graseTime) {
+                                        tempInterestReturn = tempKerenRemain * (interest / 1200);
+                                        tempKerenReturn = payment - Number(tempInterestReturn);
+                                        if (i == (m - 1)) {
+                                            tempKerenReturn = RoundDown(tempKerenRemain);
+                                            payment = Number(tempKerenReturn) + Number(tempInterestReturn);
+                                        }
+                                        totalPayment = payment;
+                                    }
+                                    else {
+                                        tempKerenReturn = tempKerenRemain * (interest / 1200) * -1;
+                                    }
+                                    totalWithInterest = totalWithInterest + Number(totalPayment);
+
+                                    if (index > 0) {
+                                        HTML_details += "<td style='display:none;'><div id=\"KerenRemain" + i + "\">" + RoundDown(tempKerenRemain) + "</div></td>";
+                                        HTML_details += "<td style='display:none;'><div id=\"KerenReturn" + i + "\">" + RoundUp(tempKerenReturn) + "</div></td>";
+                                        HTML_details += "<td style='display:none;'><div id=\"InterestReturn" + i + "\">" + RoundDown(tempInterestReturn) + "</div></td>";
+                                        HTML_details += "<td style='display:none;'><div id=\"payment" + i + "\">" + RoundDown(totalPayment) + "</div></td>";
+                                        HTML_details += "<td style='display:none;'><div id=\"payedSoFar" + i + "\">" + RoundInt(totalWithInterest) + "</div></td>";
+
+                                        tempMadadKerenRemain = Number(tempMadadKerenRemain) * indexValue;
+                                        if (i == graseTime) {
+                                            madadPayment = PMT((interest / 1200), m - graseTime, tempMadadKerenRemain);
+                                            //amadadPayment = madadPayment * indexValue;
+                                            tempMadadInterestReturn = tempMadadKerenRemain * (interest / 1200);
+                                            tempMadadKerenReturn = madadPayment - tempMadadInterestReturn;
+                                        }
+                                        if (i > graseTime) {
+                                            tempMadadInterestReturn = tempMadadKerenRemain * (interest / 1200);
+                                            madadPayment = madadPayment * indexValue;
+                                            if (i == (m - 1)) {
+                                                tempMadadKerenReturn = RoundDown(tempMadadKerenRemain);
+                                                madadPayment = Number(tempMadadKerenReturn) + Number(tempMadadInterestReturn);
+                                            }
+                                            else { tempMadadKerenReturn = madadPayment - tempMadadInterestReturn; }
+                                        }
+                                        if (i < graseTime) {
+                                            tempMadadKerenReturn = tempMadadKerenRemain * (interest / 1200) * -1;
+                                            madadPayment = 0;
+                                        }
+                                        HTML_details += "<td><div id=\"MadadKerenRemain" + i + "\">" + RoundDown(tempMadadKerenRemain) + "</div></td>";
+                                        HTML_details += "<td><div id=\"MadadKerenReturn" + i + "\">" + RoundUp(tempMadadKerenReturn) + "</div></td><td>";
+                                        HTML_details += "<div id=\"MadadInterestReturn" + i + "\">" + RoundDown(tempMadadInterestReturn) + "</div></td>";
+                                        HTML_details += "<td><div id=\"MadadPayment" + i + "\">" + RoundDown(madadPayment) + "</div></td>";
+
+                                        madadTotalWithInterest = madadTotalWithInterest + madadPayment;
+                                        HTML_details += "<td><div id=\"MadadPayedSoFar" + i + "\">" + RoundDown(madadTotalWithInterest) + "</div></td>";
+                                        tempMadadKerenRemain = tempMadadKerenRemain - tempMadadKerenReturn;
+                                    }
+                                    else {
+                                        HTML_details += "<td><div id=\"KerenRemain" + i + "\">" + RoundDown(tempKerenRemain) + "</div></td>";
+                                        HTML_details += "<td><div id=\"KerenReturn" + i + "\">" + RoundUp(tempKerenReturn) + "</div></td>";
+                                        HTML_details += "<td><div id=\"InterestReturn" + i + "\">" + RoundDown(tempInterestReturn) + "</div></td>";
+                                        HTML_details += "<td><div id=\"payment" + i + "\">" + RoundDown(totalPayment) + "</div></td>";
+                                        HTML_details += "<td><div id=\"payedSoFar" + i + "\">" + RoundInt(totalWithInterest) + "</div></td>";
+                                    }
+                                    tempKerenRemain = tempKerenRemain - tempKerenReturn;
+                                    HTML_details += "</tr>";
+
+                                    //madadPayment = RoundInt(madadPayment) + madadPayment * (index / 1200);
+                                }
+
+                                HTML_details += "</tbody></table>";
+                                HTML_details += "<p name='tdSpan'></p>";
+                                var HTML = "<table style='width:550px;vertical-align:middle;table-layout:fixed;";
+                                if (index == 0) {
+                                    HTML += "margin-bottom:50px;";
+                                }
+                                HTML += "'><tr><td></td><td>סה" + '"' + "כ החזר</td><td>סה" + '"' + "כ ריבית והצמדה</td><td>תשלום חודשי בסוף תקופה</td><td>החזר עבור כל שקל</td></tr>";
+                                HTML += "<tr><td>ללא הצמדה למדד</td><td><span id='totalAmount'>" + addcommas(RoundInt(totalWithInterest).toString()) + "</span></td><td><span id='totalInterest'>" + addcommas(RoundInt(totalWithInterest - Totalsum).toString()) + "</span></td><td><span id='lastPayment'>" + addcommas(RoundInt(totalPayment).toString()) + "</span></td><td><span id='totalPriceValue'>" + Round2Digit(totalWithInterest / Totalsum) + "</span></td></tr>";
+                                HTML += "<tr id='trMadad'><td>צמוד למדד</td><td><span id='MadadTotalAmount'>" + addcommas(RoundInt(madadTotalWithInterest).toString()) + "</span></td><td><span id='MadadTotalInterest'>" + addcommas(RoundInt(madadTotalWithInterest - Totalsum).toString()) + "</span></td><td><span id='MadadLastPayment'>" + addcommas(RoundInt(madadPayment).toString()) + "</span></td><td><span id='MadadTotalPriceValue'>" + addcommas(Round2Digit(madadTotalWithInterest / Totalsum).toString()) + "</span></td></tr>";
+                                HTML += "<tr id='trDif'><td>הפרש</td><td colspan='2'><span id='DifTotalAmount'>" + addcommas((Number(RoundInt(madadTotalWithInterest) - RoundInt(totalWithInterest))).toString()) + "</span></td><td><span id='DifLastPayment'>" + addcommas((Number(RoundInt(madadPayment - totalPayment)).toString())) + "</span></td><td><span id='DifTotalPriceValue'>" + addcommas((Round2Digit(Round2Digit(madadTotalWithInterest / Totalsum) - Round2Digit(totalWithInterest / Totalsum))).toString()) + "</span></td></tr>";
+                                HTML += "</table>";
+                                $$('result').innerHTML = HTML + HTML_details;
+
+                                displayMadad();
+                                updateValues(Totalsum, m, payment);
+                            }
+                        </script>
+
+                        <table style="border:0px;width:550px;margin-bottom:10px;table-layout:fixed;">
+                            <tr>
+                                <td id='tdShpizer'><a onclick="MovePage('shpitzer');">קרן שפיצר</a></td>
+                                <td id='tdShava'><a onclick="MovePage('shava');">קרן שווה</a></td>
+                                <td id='tdGraseH'><a onclick="MovePage('graseH');">גרייס חלקי</a></td>
+                                <td style="background:hsl(64, 71%, 61%); color:hsl(0, 0%, 31%);" id='tdGrase'><a
+                                        onclick="MovePage('graseM');">גרייס
+                                        מלא</a></td>
+
+                            </tr>
+                        </table>
+                        <table style="border:0px;width:550px;margin-bottom:10px;table-layout:fixed;">
+                            <tr>
+                                <td id='tdCTamount' style='cursor:pointer;' onclick="updateCalcType('amount');">
+                                    <span>סכום ההלוואה</span></td>
+                                <td id='tdCTperiod' style='cursor:pointer;' onclick="updateCalcType('period');">
+                                    <span>תקופה</span></td>
+                                <td id='tdCTpayment' style='cursor:pointer;' onclick="updateCalcType('payment');">
+                                    <span>החזר חודשי</span></td>
+                            </tr>
+                        </table>
+                        <div id='pageData'>
+                            <div id='pageType' style="display:none;">מחשבון משכנתא - גרייס מלא</div>
+                            <div id='calcTypeChoose' style="display:none;"></div>
+                            <table id='tableCalcValues' style='border:0px;width:550px;'>
+                                <tr>
+                                    <td>
+                                        סכום ההלוואה
+                                    </td>
+                                    <td colspan="2">
+                                        <input name="tdInput" class="inpMenu" type="text" id="TotalSum" value=""
+                                            onkeyup="Calc();" />&nbsp; <i class='fas fa-shekel-sign'></i>
+                                        <span name="tdSpan" id="TotalSumSpan" style="display:none;"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        תקופה (כולל הגרייס) </td>
+                                    <td>
+                                        שנים <br />
+                                        <input name="tdInput" class="inpMenu" type="text" id="DurationY"
+                                            onchange="if(this.value>0){$$('DurationM').value=this.value*12;}Calc();" />
+                                        <span name="tdSpan" id="DurationYSpan" style="display:none;"></span>
+                                    </td>
+                                    <td>
+                                        חודשים <br />
+                                        <input name="tdInput" class="inpMenu" type="text" id="DurationM" value=""
+                                            onchange="Calc();" />
+                                        <span name="tdSpan" id="DurationMSpan" style="display:none;"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        תקופת הגרייס</td>
+                                    <td>
+                                        שנים <br />
+                                        <input name="tdInput" class="inpMenu" type="text" id="GraseY"
+                                            onchange="if(this.value>0){$$('GraseM').value=this.value*12;}Calc();" />
+                                        <span name="tdSpan" id="GraseYSpan" style="display:none;"></span>
+                                    </td>
+                                    <td>
+                                        חודשים <br />
+                                        <input name="tdInput" class="inpMenu" type="text" id="GraseM" value=""
+                                            onchange="Calc();" />
+                                        <span name="tdSpan" id="GraseMSpan" style="display:none;"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        החזר חודשי
+                                    </td>
+                                    <td colspan="2">
+                                        <input name="tdInput" class="inpMenu" type="text" id="PaymentM" value=""
+                                            onkeyup="Calc();" /> &nbsp; <i class='fas fa-shekel-sign'></i>
+                                        <span name="tdSpan" id="PaymentMSpan" style="display:none;"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ריבית שנתית
+                                    </td>
+                                    <td colspan="2">
+                                        <input name="tdInput" class="inpMenu" type="text" id="InterestY" value=""
+                                            onkeyup="Calc();" />
+                                        <span name="tdSpan" id="InterestYSpan" style="display:none;"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        מדד שנתי
+                                    </td>
+                                    <td colspan="2">
+                                        <input name="tdInput" class="inpMenu" type="text" id="IndexY" value=""
+                                            onkeyup="Calc();" />
+                                        <span name="tdSpan" id="IndexYSpan" style="display:none;"></span>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div id="result">
+                            </div>
+                        </div>
+                        <script type="text/javascript" language="javascript">
+                            firstLoad();    
+                        </script>
+
+
+                    </div>
+                </div>
+
+                <div id="comments">
+
+
+
+
+                </div><!-- #comments -->
+
+
+
+            </div><!-- END DIV contentfull -->
+
+        </div><!-- END DIV contentwrapper -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.js"
+            integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
+</body>
+
+</html>

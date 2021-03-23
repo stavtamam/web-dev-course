@@ -55,7 +55,7 @@ if(isset($_GET['email']) && isset($_GET['password'])){
         <div>
             <span><?= $try ;?></span>
             <span><?= $error ;?></span> <br>
-    <a href="http://localhost/restApi/php/indexTasks1.php">RETURN TO MAIN PAGE</a>
+    <a href="https://bendor.tk/stav/indextasks1.php">RETURN TO MAIN PAGE</a>
     </div>  
 </body>
     </html>

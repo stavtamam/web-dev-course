@@ -1,0 +1,13 @@
+body {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+input {
+    text-align: center;
+    margin: 1% 46%;
+}

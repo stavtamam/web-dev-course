@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>מחשבון מס רכישה</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+        integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <style>
+        body {
+            direction: rtl !important;
+            background-color: hsl(0, 0%, 12%);
+        }
+
+        .div {
+            margin-bottom: 10px;
+            width: 50%;
+            text-align: end;
+        }
+
+        .div2 {
+            width: 45%;
+            text-align: end;
+        }
+
+        .container {
+            background-color: hsl(0, 0%, 12%);
+            border: 3px solid hsl(64, 71%, 61%);
+            border-radius: 10px;
+            color: white;
+        }
+
+        .exp {
+            color: hsl(64, 71%, 61%);
+            border: 3px solid hsl(64, 71%, 61%);
+        }
+
+        .exp:hover {
+            color: hsl(0, 0%, 12%);
+            border: 3px solid hsl(64, 71%, 61%);
+            background-color: hsl(64, 71%, 61%);
+        }
+
+        input,
+        span,
+        select {
+            display: inline-table !important;
+            background-color: hsl(0, 0%, 12%) !important;
+            color: hsl(64, 71%, 61%) !important;
+            width: 70% !important;
+        }
+
+        .fa-shekel-sign {
+            color: hsl(64, 71%, 61%);
+        }
+
+        @media only screen and (max-width: 765px) {
+            body {
+                direction: ltr !important;
+            }
+
+            .container {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body class="">
+    <div class="container text-center p-3 mt-5 w-50">
+        <label for="asset price">מחיר הנכס</label>
+        <input type="text" class="asset border border-secondary rounded" placeholder="0">&nbsp;<i
+            class="fas fa-shekel-sign"></i><br>
+        <label for="equity">חלקיות</label>
+        <input type="text" class="part border border-secondary rounded" value="1">&nbsp;<i
+            class="fas fa-shekel-sign"></i><br>
+        <input type="text" class="part2 border border-secondary rounded" value="1">&nbsp;<i
+            class="fas fa-shekel-sign"></i><br>
+        <label for="apartments types">סוג הנכס</label>
+        <select name="" id="select" class="border border-secondary rounded">
+            <option value="Firstapartment" selected="selected">דירת מגורים יחידה</option>
+            <option value="second">דירת מגורים</option>
+            <option value="groundhouse">קרקע</option>
+            <option value="building">בניין</option>
+        </select><br>
+        <label for="calculate">סוג חישוב</label>
+        <select name="" id="select2" class="border border-secondary rounded">
+            <option value="regular" selected="selected">חישוב רגיל</option>
+            <option value="blind">עיוור/נכה</option>
+            <option value="newcomer">עולה</option>
+            <option value="nobenefits">קרוב ללא תמורה</option>
+
+        </select><br>
+        <div class="tab"></div>
+        <span class="sum border border-secondary rounded" placeholder="0"></span>
+        <!-- <div class="container text-center div border border-secondary rounded bg-light p-0"></div><br> -->
+        <a href="" class="btn btn-outline-success my-sm-0 exp w-100">ייצוא לקובץ אקסל</a>
+        <!-- <a href="http://localhost/restApi/web-dev-course/broker/brokerb.html"
+            class="btn btn-outline-danger my-sm-0 clear">מחיקה</a> -->
+
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <script>
+        //declare values
+        let data = "";
+        let pdf = [];
+        let choice = $("#select option:selected").val();
+        let choice2 = $("#select2 option:selected").val();
+        let Part2 = "";
+        let Part3 = "";
+        let Part4 = "";
+        let Part5 = "";
+        let Part6 = "";
+        let sum = 0;
+
+        if (choice2 == 'blind') {
+            $("#select option[value='building']").prop('disabled', true);
+        } else {
+            $("#select option[value='building']").prop('disabled', false);
+        }
+
+        //functions the drop down change
+        $("#select").change(function () {
+            let choice = $("#select option:selected").val();
+            $(".sum").html(calc(choice, choice2).toLocaleString() + " <i class='fas fa-shekel-sign'></i>");
+            // console.log(choice);
+            if (choice == 'building') {
+                $("#select2 option[value='blind']").prop('disabled', true);
+            } else {
+                $("#select2 option[value='blind']").prop('disabled', false);
+            }
+        })
+
+        $("#select2").change(function () {
+            let choice2 = $("#select2 option:selected").val();
+            // console.log(choice2);
+            $(".sum").html(calc(choice, choice2).toLocaleString() + " <i class='fas fa-shekel-sign'></i>");
+            if (choice2 == 'blind') {
+                $("#select option[value='building']").prop('disabled', true);
+            } else {
+                $("#select option[value='building']").prop('disabled', false);
+            }
+        })
+
+
+        function keys(input) {
+            input.keyup(function () {
+                input.val(addcommas(input.val()));
+                $(".sum").html(calc(choice, choice2).toLocaleString() + " <i class='fas fa-shekel-sign'></i>");
+            })
+        }
+
+        function addcommas(x) {
+            return x.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        //remove commas from every input
+        function parseN(num) {
+            if (num == 0) {
+                num = 0;
+                return 0;
+            } else {
+                gg = parseFloat(num.toString().split(",").join("").replace(/[^0-9-.]/g, ''));
+                return gg;
+            }
+        }
+
+        keys($(".asset"));
+        keys($(".part"));
+        keys($(".part2"));
+
+        //starts with keyup the calc function
+        function sumAll() {
+            sum = (parseN($(".asset").val()) * parseN($(".part2").val())) / parseN($(".part").val());
+            // console.log(sum);
+            return sum;
+        }
+
+        function calc(choice, choice2) {
+            if (choice2 == "regular" || choice2 == "nobenefits") {
+                if (choice == "Firstapartment") {
+                    if (sumAll() > 1744505) {
+                        Part2 = sumAll() - 1744505;
+
+                        if (Part2 > 2069205) {
+                            Part2 = 324700 * 0.035;
+                            Part3 = sumAll() - 3813710;
+
+                            if (Part3 > 5338290) {
+                                Part3 = 3269085 * 0.05;
+                                Part4 = sumAll() - 9152000;
+
+                                if (Part4 > 17794305) {
+                                    Part4 = 12456015 * 0.08;
+                                    Part5 = sumAll() - 17794305;
+                                    Part5 *= 0.1;
+                                    // console.log(Part2, Part3, Part4, Part5);
+                                    return Math.round(Part2 + Part3 + Part4 + Part5);
+
+                                } else {
+                                    Part4 *= 0.08;
+                                    // console.log(Part2, Part3, Part4);
+                                    return Math.round(Part2 + Part3 + Part4);
+                                }
+
+                            } else {
+                                Part3 *= 0.05;
+                                // console.log(Part2, Part3);
+                                return Math.round(Part3 + Part2);
+                            }
+
+                        } else {
+                            Part2 *= 0.035;
+                            return Math.round(Part2);
+                        }
+
+                    } else {
+                        return 0;
+                    }
+                } if (choice == "second") {
+                    if (sumAll() > 1292280) {
+                        Part2 = 64614;
+                        Part3 = sumAll() - 1292280;
+                        if (Part3 > 3876835) {
+                            Part3 = 155073;
+                            Part4 = sumAll() - 5169115;
+                            if (Part4 > 5338290) {
+                                Part4 = 102302;
+                                Part5 = sumAll() - 10507405;
+                                if (Part5 > 17794305) {
+                                    Part5 = 996481;
+                                    Part6 = sumAll() - 17794305;
+                                    Part6 *= 0.1;
+                                    // console.log(Part2, Part3, Part4, Part5, Part6);
+                                    return Math.round(Part3 + Part2 + Part4 + Part5 + Part6);
+                                } else {
+                                    Part5 *= 0.08;
+                                    // console.log(Part2, Part3, Part4, Part5);
+                                    return Math.round(Part3 + Part2 + Part4 + Part5);
+                                }
+                            } else {
+                                Part4 *= 0.07;
+                                // console.log(Part2, Part3, Part4);
+                                return Math.round(Part3 + Part2 + Part4)
+                            }
+                        } else {
+                            Part3 *= 0.06;
+                            // console.log(Part2, Part3);
+                            return Math.round(Part3 + Part2)
+                        }
+
+                    } else {
+                        console.log(sumAll() * 0.05);
+                        return (sumAll() * 0.05);
+                    }
+                } if (choice == "building" || choice == "groundhouse") {
+                    return Math.round(sumAll() * 0.06);
+                }
+            }
+            if (choice2 == "blind" || choice2 == "newcomer") {
+                console.log((sumAll() / 100) * 0.5)
+                return Math.round((sumAll() / 100) * 0.5);
+            }
+        }
+
+
+        // export to csv
+        $(".exp").click(function () {
+            let csv = 'Proprty Price: , Fraction: , Property Type: , Calculation Type: , Tax: \n';
+            pdf.push(parseN($(".asset").val()), parseN($(".part").val()) / parseN($(".part2").val()), $("#select option:selected").val(), $("#select2 option:selected").val(), calc(choice, choice2));
+
+            pdf.forEach(function (item) {
+                csv += item;
+                csv += ", ";
+                console.log(csv);
+
+            })
+
+            var hiddenElement = document.createElement('a');
+            hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+            hiddenElement.target = '_blank';
+            hiddenElement.download = 'people.csv';
+            hiddenElement.click();
+
+        })
+
+    </script>
+
+</body>
+
+</html>

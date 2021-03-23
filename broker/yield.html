@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+        integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <style>
+        body {
+            direction: rtl !important;
+            background-color: hsl(0, 0%, 12%);
+        }
+
+        .div {
+            margin-bottom: 10px;
+            width: 100%;
+            text-align: end;
+        }
+
+        .div2 {
+            width: 45%;
+            text-align: end;
+        }
+
+        .container {
+            background-color: hsl(0, 0%, 12%);
+            border: 3px solid hsl(64, 71%, 61%);
+            border-radius: 10px;
+            color: white;
+        }
+
+        .exp {
+            color: hsl(64, 71%, 61%);
+            border: 3px solid hsl(64, 71%, 61%);
+        }
+
+        .exp:hover {
+            color: hsl(0, 0%, 12%);
+            border: 3px solid hsl(64, 71%, 61%);
+            background-color: hsl(64, 71%, 61%);
+        }
+
+        input,
+        span,
+        select {
+            display: inline-table !important;
+            background-color: hsl(0, 0%, 12%) !important;
+            color: hsl(64, 71%, 61%) !important;
+            width: 60% !important;
+        }
+
+        .fa-shekel-sign {
+            color: hsl(64, 71%, 61%);
+        }
+
+        @media only screen and (max-width: 765px) {
+            body {
+                direction: rtl !important;
+            }
+
+            .container {
+                width: 100% !important;
+            }
+
+            input,
+            span,
+            select {
+                width: 40% !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="rtl">
+    <div class="container p-3 text-right mt-5 w-50">
+        <div class="float-right clearfix fluid div">
+            <label for="asset price">מחיר הנכס</label>
+            <input type="text" class="asset border border-secondary rounded" placeholder="0"> &nbsp; <i
+                class="fas fa-shekel-sign"></i><br>
+            <label for="rent">שכר דירה חודשי משוער</label>
+            <input type="text" class="rent border border-secondary rounded" placeholder="0">
+            &nbsp; <i class="fas fa-shekel-sign"></i><br>
+            <label for="construction">עלויות נוספות לבעל הדירה</label>
+            <input type="text" class="other border border-secondary rounded" placeholder="0"> &nbsp; <i
+                class="fas fa-shekel-sign"></i><br>
+            <label for="label">* שיפוצים, תחזוקה, תיקונים וכדומה</label>
+        </div>
+
+        <div class="text-center float-left div2">
+            <label for="taxes">סה"כ עלות</label>
+            <span class="sum fluid"></span><br>
+        </div>
+        <a href="#" class="btn my-sm-0 exp w-100">ייצוא לקובץ אקסל</a>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+
+    <script>
+        let sum = 0;
+        let percent = 0;
+        $(".sum").html(sumAll().toLocaleString() + " <i class='fas fa-percent'></i>");
+        let data = "";
+        let pdf = [];
+
+
+        function keys(input) {
+            input.keyup(function () {
+                input.val(addcommas(input.val()));
+                $(".sum").html(sumAll().toLocaleString() + " <i class='fas fa-percent'></i>");
+            })
+        }
+
+        function addcommas(x) {
+            return x.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        //add commas to every input
+        keys($(".other"));
+        keys($(".rent"));
+        keys($(".asset"));
+
+        //remove commas from every input
+        function parseN(num) {
+            if (num == 0) {
+                num = 0;
+                return 0;
+            } else {
+                gg = parseFloat(num.toString().split(",").join("").replace(/[^0-9-.]/g, ''));
+                return gg;
+            }
+        }
+
+        function rent() {
+            let rent = parseN($(".rent").val()) * 12;
+            return rent;
+        }
+
+        // sums everything
+        function sumAll() {
+            sum = parseN($(".asset").val()) + parseN($(".other").val());
+            if (rent() == 0 || sum == 0) {
+                percent = 0;
+            } else {
+                percent = (rent() / sum) * 100;
+            }
+            return percent;
+
+        }
+
+        //export to csv
+        $(".exp").click(function () {
+            let csv = 'Proprty Price: , Other expenses: , Rent price per month:, Yield: \n';
+            pdf.push(parseN($(".asset").val()), parseN($(".other").val()), parseN($(".rent").val()), sumAll());
+
+            pdf.forEach(function (item) {
+                csv += item;
+                csv += ", ";
+                console.log(csv);
+
+            })
+
+            var hiddenElement = document.createElement('a');
+            hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+            hiddenElement.target = '_blank';
+            hiddenElement.download = 'people.csv';
+            hiddenElement.click();
+
+        })
+
+    </script>
+
+</body>
+
+</html>

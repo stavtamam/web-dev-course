@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+        integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"
+        integrity="sha512-Izh34nqeeR7/nwthfeE0SI3c8uhFSnqxV0sI9TvTcXiFJkMd6fB644O64BRq2P/LA/+7eRvCw4GmLsXksyTHBg=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+        integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+        crossorigin="anonymous"></script>
+    <script defer src="tarot.js"></script>
+    <title>Your Personal Year</title>
+    <style>
+        body {
+            margin-top: 0;
+            margin-bottom: 0;
+            margin-left: 0;
+            margin-right: 0;
+            width: 100%;
+            height: 100vh;
+            direction: rtl;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: 'Assistant', sans-serif;
+            font-weight: 800;
+        }
+
+        input {
+            margin: 0 auto;
+            padding: 11px;
+            font-size: 17px;
+            /* display: block; */
+            text-align: center;
+        }
+
+
+        #date {
+            border: 5px double hsl(323, 100%, 70%);
+            /* border: 5px double hsl(183, 65%, 87%); */
+            width: 210px;
+            border-radius: 5px;
+        }
+
+        #submit {
+            background-color: hsl(183, 65%, 87%);
+            padding: 9px;
+            text-decoration: none;
+            font-size: 25px;
+            color: hsl(323, 100%, 70%);
+            border-radius: 5px;
+        }
+
+        #submit:hover {
+            background-color: hsl(323, 100%, 70%);
+            color: hsl(183, 65%, 87%);
+        }
+
+        .div {
+            font-family: 'Assistant', sans-serif;
+            font-weight: 300;
+            text-align: center;
+            /* width: 600px; */
+            height: 300px;
+            margin: 0 auto;
+        }
+
+        .container {
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>תאריך יום הולדתך:</h1><br>
+    <div class="container">
+        <a href="#" id="submit"><i class="fas fa-calculator"></i></a>
+        <input id="date" type="date">
+    </div>
+    <br>
+    <div class="div">
+        <span id="span"></span>
+        <span id="span2"></span>
+
+    </div>
+</body>
+
+</html>

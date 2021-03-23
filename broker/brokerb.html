@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+        integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <style>
+        body {
+            direction: rtl !important;
+            background-color: hsl(0, 0%, 12%);
+        }
+
+        .div {
+            margin-bottom: 10px;
+            width: 50%;
+            text-align: end;
+        }
+
+        .div2 {
+            width: 45%;
+            text-align: end;
+        }
+
+        .container {
+            background-color: hsl(0, 0%, 12%);
+            border: 3px solid hsl(64, 71%, 61%);
+            border-radius: 10px;
+            color: white;
+        }
+
+        .exp {
+            color: hsl(64, 71%, 61%);
+            border: 3px solid hsl(64, 71%, 61%);
+        }
+
+        .exp:hover {
+            color: hsl(0, 0%, 12%);
+            border: 3px solid hsl(64, 71%, 61%);
+            background-color: hsl(64, 71%, 61%);
+        }
+
+        input,
+        span,
+        select {
+            display: inline-table !important;
+            background-color: hsl(0, 0%, 12%) !important;
+            color: hsl(64, 71%, 61%) !important;
+            width: 70% !important;
+        }
+
+        .fa-shekel-sign {
+            color: hsl(64, 71%, 61%);
+        }
+
+        @media only screen and (max-width: 765px) {
+            body {
+                direction: ltr !important;
+            }
+
+            .container {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body class="">
+    <div class="container text-center p-3 mt-5 w-50">
+        <label for="asset price">מחיר הנכס</label>
+        <input type="text" class="asset border border-secondary rounded" placeholder="0">&nbsp;<i
+            class="fas fa-shekel-sign"></i><br>
+        <label for="equity">הון עצמי</label>
+        <input type="text" class="fortune border border-secondary rounded" placeholder="0" disabled>&nbsp;<i
+            class="fas fa-shekel-sign"></i><br>
+        <label for="apartments types">סוג דירה</label>
+        <select name="" id="select" class="border border-secondary rounded">
+            <option value="First apartment" selected="selected">דירה ראשונה</option>
+            <option value="Improves housing">משפר דיור</option>
+            <option value="Improves housing 60%">משפר דיור 60%</option>
+            <option value="Investment property">נכס להשקעה</option>
+        </select><br>
+        <!-- <div class="container text-center div border border-secondary rounded bg-light p-0"></div><br> -->
+        <a href="" class="btn btn-outline-success my-sm-0 exp w-100">ייצוא לקובץ אקסל</a>
+        <!-- <a href="http://localhost/restApi/web-dev-course/broker/brokerb.html"
+            class="btn btn-outline-danger my-sm-0 clear">מחיקה</a> -->
+
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <script>
+        //declare values
+        let fortune = "";
+        let data = "";
+        let pdf = [];
+        let choice = $("#select option:selected").val();
+        // let inputN = $(".asset").val();
+
+
+        //style attr
+        $(".clear").attr('style', 'display: none')
+
+        //functions the drop down change
+        $("#select").change(function () {
+            let choice = $("#select option:selected").val();
+            console.log(choice);
+            $(".fortune").val(calc(choice).toLocaleString());
+        })
+
+        //calculate the fortune input
+        function calc(choice) {
+            let inputN = parseFloat($(".asset").val().toString().split(",").join("").replace(/[^0-9-.]/g, ''));
+            console.log(inputN)
+            if ($(".asset").val() !== "") {
+                $(".asset").val(inputN.toLocaleString())
+
+                if (choice == "First apartment") {
+                    fortune = Math.round(inputN / 4);
+                    return fortune;
+                }
+                if (choice == "Improves housing") {
+                    fortune = Math.round(inputN / 3.33333333333);
+                    return fortune;
+                }
+                if (choice == "Improves housing 60%") {
+                    fortune = Math.round(inputN / 2.5);
+                    return fortune;
+                }
+                if (choice == "Investment property") {
+                    fortune = Math.round(inputN / 2);
+                    return fortune;
+                } else {
+                    fortune = 0;
+                    $(".fortune").val("");
+                    return fortune;
+                }
+            } else {
+                $(".asset").val("");
+                return 0;
+            }
+        }
+
+        //starts with keyup the calc function
+        $(".asset").keyup(function () { $(".fortune").val(calc(choice).toLocaleString()) });
+
+        //export to csv
+        $(".exp").click(function () {
+            let inputN = parseFloat($(".asset").val().toString().split(",").join("").replace(/[^0-9-.]/g, ''));
+            let fortune = parseFloat($(".fortune").val().toString().split(",").join("").replace(/[^0-9-.]/g, ''));
+            console.log(inputN)
+            let csv = 'Proprty Price: , Equity: , Type: \n';
+            pdf.push(inputN, fortune, $("#select option:selected").val());
+
+            pdf.forEach(function (item) {
+                csv += item;
+                csv += ", ";
+                console.log(csv);
+
+            })
+            //style attr
+            // $(".exp").attr('style', 'display: none');
+
+            var hiddenElement = document.createElement('a');
+            hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+            // hiddenElement.target = '_blank';
+            hiddenElement.download = 'people.csv';
+            hiddenElement.click();
+
+        })
+    </script>
+
+</body>
+
+</html>

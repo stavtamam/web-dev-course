@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+        integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <style>
+        body {
+            direction: rtl !important;
+            background-color: hsl(0, 0%, 12%);
+        }
+
+        .div {
+            margin-bottom: 10px;
+            width: 50%;
+            text-align: end;
+        }
+
+        .div2 {
+            width: 45%;
+            text-align: end;
+        }
+
+        .container {
+            background-color: hsl(0, 0%, 12%);
+            border: 3px solid hsl(64, 71%, 61%);
+            border-radius: 10px;
+            color: white;
+        }
+
+        .exp {
+            color: hsl(64, 71%, 61%);
+            border: 3px solid hsl(64, 71%, 61%);
+        }
+
+        .exp:hover {
+            color: hsl(0, 0%, 12%);
+            border: 3px solid hsl(64, 71%, 61%);
+            background-color: hsl(64, 71%, 61%);
+        }
+
+        input,
+        span,
+        select {
+            display: inline-table !important;
+            background-color: hsl(0, 0%, 12%) !important;
+            color: hsl(64, 71%, 61%) !important;
+            width: 70% !important;
+        }
+
+        .fa-shekel-sign {
+            color: hsl(64, 71%, 61%);
+        }
+
+        @media only screen and (max-width: 765px) {
+            body {
+                direction: ltr !important;
+            }
+
+            .container {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body class="rtl">
+    <div class="container p-3 text-right mt-5">
+        <div class="float-right clearfix fluid div">
+            <label for="asset price">מחיר הנכס</label>
+            <input type="text" class="asset border border-secondary rounded form-control" placeholder="0"> &nbsp;<i
+                class="fas fa-shekel-sign"></i><br>
+            <label for="fee">אגרות שונות</label>
+            <input type="text" class="fee border border-secondary rounded form-control" placeholder="0"> &nbsp; <i
+                class="fas fa-shekel-sign "></i><br>
+            <label for="lawyer">שכר טרחת עורך דין</label>
+            <input type="text" class="lawyer border border-secondary rounded w-10 form-control" placeholder="0">
+            &nbsp; <i class="fas fa-shekel-sign "></i><br>
+            <label for="mediator">שכר טרחת מתווך</label>
+            <input type="text" class="mediator border border-secondary rounded form-control" placeholder="0">&nbsp; <i
+                class="fas fa-shekel-sign "></i><br>
+            <label for="apartments types">סוג דירה</label>
+            <select name="" id="select" class="border border-secondary rounded form-control">
+                <option value="one apartment" selected="selected">דירת מגורים יחידה</option>
+                <option value="another apartmant">דירת מגורים נוספת</option>
+                <option value="yard">מגרש לבנייה</option>
+            </select>
+        </div>
+        <div class="float-left clearfix fluid div2">
+            <label for="appraiser">הערכת שמאי</label>
+            <input type="text" class="appraiser border border-secondary rounded form-control" placeholder="0"> &nbsp; <i
+                class="fas fa-shekel-sign "></i><br>
+            <label for="transport">הובלות</label>
+            <input type="text" class="transport border border-secondary rounded form-control" placeholder="0"> &nbsp; <i
+                class="fas fa-shekel-sign "></i><br>
+            <label for="other">הוצאות נוספות</label>
+            <input type="text" class="other border border-secondary rounded form-control" placeholder="0"> &nbsp; <i
+                class="fas fa-shekel-sign "></i><br>
+            <label for="construction">שיפוצים</label>
+            <input type="text" class="construction border border-secondary rounded form-control" placeholder="0"> &nbsp;
+            <i class="fas fa-shekel-sign"></i><br>
+            <label for="taxes text-center">מס רכישה</label>&nbsp;
+            <span class="select"></span><br>
+        </div> &nbsp;
+
+        <div class="div3 text-center">
+            <label for="taxes">סה"כ עלות</label>
+            <span class="sum fluid"></span><br>
+        </div>
+        <a href="#" class="btn my-sm-0 exp w-100">ייצוא לקובץ אקסל</a>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+
+    <script>
+        let choice = $("#select option:selected").val();
+
+        let tax = 0;
+        let lawyer = 0;
+        let mediator = 0;
+        let sum = 0;
+        $(".select").html(taxSelect(choice).toLocaleString() + " <i class='fas fa-shekel-sign'></i>");
+        $(".sum").html(sumAll().toLocaleString() + " <i class='fas fa-shekel-sign'></i>");
+        let data = "";
+        let pdf = [];
+
+
+        function keys(input) {
+            input.keyup(function () {
+                input.val(addcommas(input.val()));
+                $(".select").html(taxSelect(choice).toLocaleString() + " <i class='fas fa-shekel-sign'></i>");
+                $(".sum").html(sumAll().toLocaleString() + " <i class='fas fa-shekel-sign'></i>");
+            })
+        }
+
+        function addcommas(x) {
+            return x.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        //add commas to every input
+        keys($(".appraiser"));
+        keys($(".fee"));
+        keys($(".lawyer"));
+        // range($(".lawyer"));
+        keys($(".mediator"));
+        // range($(".mediator"));
+        keys($(".transport"));
+        keys($(".other"));
+        keys($(".construction"));
+        keys($(".asset"));
+
+        //functions the drop down change
+        $("#select").change(function () {
+            choice = $("#select option:selected").val();
+            $(".select").html(taxSelect(choice).toLocaleString() + " <i class='fas fa-shekel-sign'></i>");
+            $(".sum").html(sumAll().toLocaleString() + " <i class='fas fa-shekel-sign'></i>");
+        })
+
+
+        // calculate the purchase taxes
+        function taxSelect(choice) {
+            if ($(".asset").val() !== 0) {
+                if (choice == "another apartmant") {
+                    tax = Math.round(parseN($(".asset").val()) * 0.08);
+                    return tax;
+                } else if (choice == "yard") {
+                    tax = Math.round(parseN($(".asset").val()) * 0.06);
+                    return tax;
+                } else {
+                    tax = 0;
+                    return tax;
+                }
+            } else {
+                return tax;
+            }
+        }
+
+        //remove commas from every input
+        function parseN(num) {
+            if (num == 0) {
+                num = 0;
+                return 0;
+            } else {
+                gg = parseFloat(num.toString().split(",").join("").replace(/[^0-9-.]/g, ''));
+                return gg;
+            }
+        }
+
+        // sums everything
+        function sumAll() {
+            sum = parseN($(".asset").val()) + taxSelect(choice) + parseN($(".appraiser").val()) + parseN($(".fee").val()) + parseN($(".transport").val()) + parseN($(".other").val()) + parseN($(".construction").val()) + parseN($(".mediator").val()) + parseN($(".lawyer").val());
+            return sum;
+        }
+
+        //export to csv
+        $(".exp").click(function () {
+            let csv = 'Proprty Price: , Tax: , Type:, Evaluation of assessor: , Various fees: , Apartment removals , Other:, Constructions: , Attorney fee:, Brokerage fees: \n';
+            pdf.push(parseN($(".asset").val()), taxSelect(choice), $("#select option:selected").val(), parseN($(".appraiser").val()), parseN($(".fee").val()), parseN($(".transport").val()), parseN($(".other").val()), parseN($(".construction").val()), parseN($(".mediator").val()), parseN($(".lawyer").val()));
+
+            pdf.forEach(function (item) {
+                csv += item;
+                csv += ", ";
+                console.log(csv);
+
+            })
+
+            var hiddenElement = document.createElement('a');
+            hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+            hiddenElement.target = '_blank';
+            hiddenElement.download = 'people.csv';
+            hiddenElement.click();
+
+        })
+
+    </script>
+
+</body>
+
+</html>

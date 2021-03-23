@@ -1,9 +1,9 @@
 <?php
 session_start();
 $user = [
-    "uname" => "omer avharson",
-    "email" => "omer@gmail.com",
-    "password" => "123456"
+    "uname" => "stav tamam",
+    "email" => "stavtamam@gmail.com",
+    "password" => "131097"
 ];
 $_SESSION['user'] = $user;
 
@@ -23,10 +23,8 @@ if(isset($_POST['submit'])){
                 $password = $_POST['password'];
                 header("location: page2.php?email=$email&password=$password");
             }else{
-                $err = "you must enter a valid password";
+                $err = "you must enter valid details";
             }
-        }else{
-            $err = "you must enter a valid email";
         }
     }
 }
@@ -88,14 +86,14 @@ input{
 <body>
     <div class= "div">
         <div class= "div2">
-        <a href="http://localhost/restApi/php/indexTasks1.php"><img src="https://img.icons8.com/plasticine/50/000000/trash--v1.png"/> </a>
+        <a href="https://bendor.tk/stav/indextasks1.php"><img src="https://img.icons8.com/plasticine/50/000000/trash--v1.png"/> </a>
         </div>
         <h2>Sign In</h2>
-        <form action="indexTasks1.php" method="post">
+        <form action="https://bendor.tk/stav/indextasks1.php" method="post">
   <label for="email">Email:</label><br>
   <input type="email" name="email" ><br>  
   <label for="password">Password:</label><br>
-  <input type="text" name="password" ><br><br>
+  <input type="password" name="password" ><br><br>
   <input type="submit" name="submit" value="Submit">
 </form> 
 <span style="color: red"><?= $err ;?></span>
