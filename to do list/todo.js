@@ -35,7 +35,7 @@ class Person {
         });
     }
     deleteTask() {
-        // document.getElementById(task.text).remove();
+        document.getElementById(task.text).remove();
         console.log(this.tasks);
         this.printTasks();
     }

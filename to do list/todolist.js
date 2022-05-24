@@ -1,4 +1,4 @@
-const todo = document.querySelector(".todo");
+const todo = document.getElementById("todo");
 const completed = document.querySelector(".completed")
 const inputval = document.querySelector(".title");
 
@@ -30,65 +30,67 @@ class Person {
         this.tasks.forEach(task => {
             if (!task.done) {
                 console.log(task);
-                // todoHTML +=
-                //     `<li id= ${task.text}> <input type= "checkbox" class= "check"></input>
-                // <span id= "span">${task.text}<input class= "editinput editinp"></input>
-                // <button class= "done done2">Done</button>
-                // <button class= "edit">Edit</button>
-                // <button class= "delete" id="delete">Delete</button>
-                // </span>
-                // </li>`;
-                // todo.innerHTML = todoHTML;
+                todoHTML =
+                    `<li id= ${task.text}> <input type="checkbox" class="check"></input>
+                <span id="span">${task.text}<input class="editinput editinp"></input>
+                <button class="done done2">Done</button>
+                <button class="edit">Edit</button>
+                <button class="delete" id="delete" onClick=${this.deleteTask(task)}>Delete</button>
+                </span>
+                </li>`;
+                todo.innerHTML += todoHTML;
 
                 // const mission = document.getElementById(task.text);
                 // let deleteButton = document.querySelector(".delete");
                 // let editButton = document.querySelector(".edit");
                 // let done = document.querySelector(".done");
                 // let checkbox = document.querySelector(".check");
-                var li = document.createElement("li");
-                var checkbox = document.createElement("input");
-                checkbox.setAttribute("type", "checkbox");
-                checkbox.classList.add("check");
-                var t = document.createElement("span");
-                t.id = "span";
-                li.setAttribute('id', task.text);
-                li.setAttribute('class', task.text);
-                var editButton = document.createElement("button");
-                editButton.innerText = "Edit";
-                editButton.className = "edit";
-                var deleteButton = document.createElement("button");
-                deleteButton.innerText = "Delete";
-                deleteButton.className = "delete";
-                var editInput = document.createElement("input");
-                editInput.classList.add("editinput", "editinp");
-                var done = document.createElement("button");
-                done.innerText = "Done";
-                done.classList.add("done", "done2");
-                editInput.value = task.text;
 
 
-                li.appendChild(checkbox);
-                li.appendChild(t).innerHTML = task.text;
-                li.appendChild(editInput);
-                li.appendChild(done);
-                li.appendChild(editButton);
-                li.appendChild(deleteButton);
-                todo.appendChild(li);
+                // var li = document.createElement("li");
+                // var checkbox = document.createElement("input");
+                // checkbox.setAttribute("type", "checkbox");
+                // checkbox.classList.add("check");
+                // var t = document.createElement("span");
+                // t.id = "span";
+                // li.setAttribute('id', task.text);
+                // li.setAttribute('class', task.text);
+                // var editButton = document.createElement("button");
+                // editButton.innerText = "Edit";
+                // editButton.className = "edit";
+                // var deleteButton = document.createElement("button");
+                // deleteButton.innerText = "Delete";
+                // deleteButton.className = "delete";
+                // var editInput = document.createElement("input");
+                // editInput.classList.add("editinput", "editinp");
+                // var done = document.createElement("button");
+                // done.innerText = "Done";
+                // done.classList.add("done", "done2");
+                // editInput.value = task.text;
 
-                deleteButton.onclick = () => this.deleteTask(task);
-                editButton.onclick = () => this.editTask(task);
-                done.onclick = () => this.edit(task);
-                checkbox.onchange = () => this.completedTask(task);
+
+                // li.appendChild(checkbox);
+                // li.appendChild(t).innerHTML = task.text;
+                // li.appendChild(editInput);
+                // li.appendChild(done);
+                // li.appendChild(editButton);
+                // li.appendChild(deleteButton);
+                // todo.appendChild(li);
+
+                // deleteButton.onclick = () => this.deleteTask(task);
+                // editButton.onclick = () => this.editTask(task);
+                // done.onclick = () => this.edit(task);
+                // checkbox.onchange = () => this.completedTask(task);
             }
         });
 
     }
     deleteTask(task) {
-        var index = this.tasks.findIndex((element) => element == task);
-        this.tasks.splice(index, 1);
+        // var index = this.tasks.findIndex((element) => element == task);
+        // this.tasks.splice(index, 1);
         // document.getElementById(task.text).remove();
         console.log(this.tasks);
-        this.printTasks();
+        // this.printTasks();
     }
     editTask(task) {
         console.log(task.text);
@@ -139,4 +141,4 @@ class Person {
 
 var help = new Person;
 
-help.printTasks();
+// help.printTasks();
